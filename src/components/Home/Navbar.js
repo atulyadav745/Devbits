@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {BiMenu} from "react-icons/bi"
 import {AiOutlineClose} from "react-icons/ai"
+import "./Navbar.css"
 
 
 function Navbar() {
