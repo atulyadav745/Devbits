@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "../css/Home.module.css"
 import Navbar from "../components/Home/Navbar";
 import Instructions from "../components/Home/Instructions";
+import Footer from "./Footer.";
+import Lottie from "lottie-react";
+import animation from '../assets/stock (2).json'
 
 function Home() {
   return (
@@ -42,12 +45,19 @@ function Home() {
                 className="w-100"
               />
             </figure>
+            {/* <div className="h-[100%] w-[600px]">
+              <Lottie animationData={animation}/>
+            </div> */}
           </div>
         </section>
       </div>
       <Instructions />
+     <div>
+     <Footer/>
+     </div>
     </div>
   );
 }
 
 export default Home;
+

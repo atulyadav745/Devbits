@@ -17,7 +17,7 @@ function Navbar() {
     let [open, setOpen] = useState(false);
 
     return (
-        <nav className="px-2 sm:px-4 py-2.5 sticky w-full z-[20] top-0 left-0 border-b" >
+        <nav className="px-2 sm:px-4 py-2.5 sticky w-full z-[20] top-0 left-0 border-b" style={{backgroundColor:"#2b4162", backgroundImage:"linear-gradient(315deg, #2b4162 0%, #12100e 74%)"}} >
             <div className='flex flex-wrap items-center justify-between mx-auto z-[5]'>
                 <a href='/' className='flex items-center'>
                     <span className='self-center text-3xl font-semibold whitespace-nowrap text-white my-3'>Bull Traders</span>
