@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Company from "./pages/Company/Company";
+import BuySell from "./pages/BuyAndSell/BuySell";
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/company" element={<Company />} />
+        <Route exact path="/buysell" element={<BuySell buySellOption={"Buy"} stockName={"NIFTY50"} stockPrice={"2000"}  />} />
         <Route exact path="/search" element={<SearchBar placeholder={"enter"} data={Data} />} />
       </Routes>
     </>
