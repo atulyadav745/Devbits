@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import "./css/style.css";
+import Data from './components/SearchBar/Data.json'
 
 import "./charts/ChartjsConfig";
 
@@ -10,6 +11,8 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
+import SearchBar from "./components/SearchBar/SearchBar";
+import Company from "./pages/Company/Company";
 
 function App() {
   const location = useLocation();
@@ -27,6 +30,8 @@ function App() {
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/company" element={<Company />} />
+        <Route exact path="/search" element={<SearchBar placeholder={"enter"} data={Data} />} />
       </Routes>
     </>
   );
