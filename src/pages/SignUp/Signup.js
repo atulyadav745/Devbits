@@ -1,8 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
+import { useSelector, useDispatch } from "react-redux"
+import { register } from "../../redux/actions/authActions"
 
 const Signup = () => {
+
+  const initialState = { username: '', email: '', password: '' }
+  const [userData, setUserData] = useState(initialState);
+  const {email, password, username} = userData 
+  const dispatch = useDispatch();
+  // const {auth} = useSelector(state => state.default) ;
+  const navigate = useNavigate();
+
+
+  const handleSubmit = (e) => {
+    console.log("hi") ;
+    e.preventDefault() ;
+    console.log(userData) ;
+    dispatch(register(userData));
+  }
+
+  const handleChangeInput = (e) => {
+    console.log("hi") ;
+    const {name, value} = e.target 
+    setUserData({...userData, [name]:value})
+  }
+
   return (
     <div>
       <section className={styles.backGround}>
@@ -25,7 +49,7 @@ const Signup = () => {
                   Create your Free Account
                 </h1>
                 <div></div>
-                <form className="space-y-4 md:space-y-6" action="#">
+                <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <label
                       htmlFor="email"
@@ -34,12 +58,14 @@ const Signup = () => {
                       Your email
                     </label>
                     <input
+                      value={userData.email}
                       type="email"
                       name="email"
                       id="email"
                       className="bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="name@company.com"
                       required=""
+                      onChange={(e) => handleChangeInput(e)}
                     />
                   </div>
                   <div>
@@ -50,12 +76,14 @@ const Signup = () => {
                       Password
                     </label>
                     <input
+                    value={password}
                       type="password"
                       name="password"
                       id="password"
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required=""
+                      onChange={(e)=> handleChangeInput(e)}
                     />
                   </div>
                   <div>
@@ -66,38 +94,15 @@ const Signup = () => {
                       Confirm password
                     </label>
                     <input
-                      type="confirm-password"
-                      name="confirm-password"
+                      type="username"
+                      name="username"
                       id="confirm-password"
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required=""
+                      value={username}
+                      onChange = {(e)=> handleChangeInput(e)}
                     />
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="terms"
-                        aria-describedby="terms"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        required=""
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="terms"
-                        className="font-light text-white"
-                      >
-                        I accept the{" "}
-                        <a
-                          className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                          href="/"
-                        >
-                          Terms and Conditions
-                        </a>
-                      </label>
-                    </div>
                   </div>
                   <button
                     type="submit"

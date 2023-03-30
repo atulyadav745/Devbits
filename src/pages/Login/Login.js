@@ -1,21 +1,31 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
+import { useSelector, useDispatch } from "react-redux"
+import { login } from "../../redux/actions/authActions"
 
 const Login = () => {
-  // const {loginData,setLoginData}=useState({});
-  // loginData={
-  //   email,
-  //   password,
-  //   confirmpassword
-  // }
-  // const handleInput=(e)=>{
-  //   const {email,password,confirmpassword}=e.target;
-  //   email,
-  //   password,
-  //   confirmpassword;
-  //   setLoginData(...loginData,)
-  // }
+
+
+  const initialState = { email: '', password: '' }
+  const [userData, setUserData] = useState(initialState);
+  const { email, password } = userData
+  const dispatch = useDispatch();
+  // const {auth} = useSelector(state => state.default) ;
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    console.log("hi");
+    e.preventDefault();
+    console.log(userData);
+    dispatch(login(userData));
+  }
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target
+    setUserData({ ...userData, [name]: value })
+  }
+
   return (
     <div className={styles.loginpage}>
       <section className={styles.backGround}>
@@ -37,7 +47,7 @@ const Login = () => {
                 Login
               </h1>
               <div></div>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
                     htmlFor="email"
@@ -46,6 +56,7 @@ const Login = () => {
                     Email
                   </label>
                   <input
+                    value={email}
                     type="email"
                     name="email"
                     id="email"
@@ -53,6 +64,7 @@ const Login = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
+                    onChange={(e) => handleChangeInput(e)} 
                   />
                 </div>
                 <div>
@@ -63,12 +75,14 @@ const Login = () => {
                     Password
                   </label>
                   <input
+                  value={password}
                     type="password"
                     name="password"
                     id="password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
+                    onChange={(e) => handleChangeInput(e)}
                   />
                 </div>
                 <div className="ml-3 text-sm">
