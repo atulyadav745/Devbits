@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import "./css/style.css";
-import Data from './components/SearchBar/Data.json'
+import Data from "./components/SearchBar/Data.json";
 
 import "./charts/ChartjsConfig";
 
@@ -14,6 +14,8 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Company from "./pages/Company/Company";
+import BuySell from "./pages/BuyAndSell/BuySell";
+import News from "./pages/News/News";
 
 function App() {
   const location = useLocation();
@@ -33,7 +35,23 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/company" element={<Company />} />
-        <Route exact path="/search" element={<SearchBar placeholder={"enter"} data={Data} />} />
+        <Route exact path="/news" element={<News />} />
+        <Route
+          exact
+          path="/buysell"
+          element={
+            <BuySell
+              buySellOption={"Buy"}
+              stockName={"NIFTY50"}
+              stockPrice={"2000"}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/search"
+          element={<SearchBar placeholder={"enter"} data={Data} />}
+        />
       </Routes>
     </>
   );
