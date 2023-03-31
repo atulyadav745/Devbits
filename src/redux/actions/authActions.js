@@ -2,6 +2,7 @@ import { GLOBAL_TYPES } from "./GLOBAL_TYPES";
 import axios from "axios";
 import { postDataAPI } from "../../utils/fetchData"
 
+
 export const register = (data) => async (dispatch) => {
     try {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
@@ -19,13 +20,13 @@ export const register = (data) => async (dispatch) => {
 
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { message: "Registered Sucessfully" } })
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
-
     } catch (error) {
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
     }
 }
 
 export const login = (data) => async (dispatch) => {
+
 
     try {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
@@ -41,15 +42,6 @@ export const login = (data) => async (dispatch) => {
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { message: "Logged In Sucessfully" } })
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
 
-    } catch (error) {
-        dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
-    }
-}
-
-export const logout = () => async (dispatch)=> {
-    try {
-        localStorage.removeItem('token')
-        window.location.href = '/'
     } catch (error) {
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
     }

@@ -3,5 +3,6 @@ export const GLOBAL_TYPES = {
     NOTIFY: 'NOTIFY',
     ALERT: 'ALERT',
     STOCK: "STOCK",
-    TRADE : "TRADE"
+    TRADE : "TRADE",
+    TICKER: "TICKER"
 }

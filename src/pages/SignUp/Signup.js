@@ -12,9 +12,11 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const auth = useSelector(state => state.default) ;
+  let token = ""
+  if(auth && auth.token) token = auth.token
 
   useEffect(()=>{
-    if(auth.token)
+    if(token)
     {
       navigate("/dashboard")
     }
@@ -25,6 +27,7 @@ const Signup = () => {
     e.preventDefault();
     console.log(userData);
     dispatch(register(userData));
+    navigate("/dashboard")
   };
 
   const handleChangeInput = (e) => {

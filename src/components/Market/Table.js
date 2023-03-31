@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import { stockDetails } from "../../redux/actions/stockActions"
+import { GLOBAL_TYPES } from "../../redux/actions/GLOBAL_TYPES";
 
 function Table() {
 
@@ -28,7 +29,16 @@ function Table() {
     }
   }, [])
 
+  const handleClick = (symbol) => {
+    dispatch({
+      type: GLOBAL_TYPES.TICKER,
+      payload: {
+        ticker : symbol,
+      }
+    })
 
+    navigate("/stockInfo") ;
+  }
   return (
     <>
       {loading && <h1>Loading</h1>}
@@ -72,9 +82,9 @@ function Table() {
                   {/* Row */}
                   {stocksData.map((e) => {
                     return (
-                      <tr key={e.symbol}>
-                        <td className="p-2">
-                          <div className="text-slate-800">{e.symbol}</div>
+                      <tr key={e.symbol} onClick={handleClick(e.symbol)}>
+                        <td className="p-2 cursor-pointer">
+                          <div className="text-slate-800 hover:text-slate-500">{e.symbol}</div>
                         </td>
                         <td className="p-2">
                           <div className="text-center text-green-500">

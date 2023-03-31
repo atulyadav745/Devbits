@@ -1,32 +1,9 @@
 import React from "react";
-// import DoughnutChart from '../../charts/DoughnutChart';
-
-// Import utilities
-import { tailwindConfig } from "../../utils/Utils";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Marketorder() {
-  const chartData = {
-    labels: ["United States", "Italy", "Other"],
-    datasets: [
-      {
-        label: "Top Countries",
-        data: [35, 30, 35],
-        backgroundColor: [
-          tailwindConfig().theme.colors.indigo[500],
-          tailwindConfig().theme.colors.blue[400],
-          tailwindConfig().theme.colors.indigo[800],
-        ],
-        hoverBackgroundColor: [
-          tailwindConfig().theme.colors.indigo[600],
-          tailwindConfig().theme.colors.blue[500],
-          tailwindConfig().theme.colors.indigo[900],
-        ],
-        hoverBorderColor: tailwindConfig().theme.colors.white,
-      },
-    ],
-  };
-
+  const ticker= useSelector(state => state.ticker)
   return (
     <div className="flex flex-col col-span-full  md:col-span-4 dark:bg-gray-100 shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
@@ -34,9 +11,6 @@ function Marketorder() {
           Market Order
         </h2>
       </header>
-      {/* Chart built with Chart.js 3 */}
-      {/* Change the height attribute to adjust the chart height */}
-
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -44,14 +18,12 @@ function Marketorder() {
               <table className="min-w-full text-left text-sm font-light">
                 <tbody>
                   <tr>
-                    {/* <td className="whitespace-nowrap px-6 py-4 font-medium">1</td> */}
                     <td className="whitespace-nowrap px-6 py-4 text-xl font-bold">
                       Open
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-xl font-bold">
                       13 101.48
                     </td>
-                    {/* <td className="whitespace-nowrap px-6 py-4">@mdo</td> */}
                   </tr>
                   <tr>
                     <td className="whitespace-nowrap px-6 py-4 text-xl font-bold">
