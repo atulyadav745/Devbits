@@ -21,8 +21,8 @@ function Dashboard() {
                             </div>
                         </div>
                         <Analytics />
-                        <Market />
-                        <News />
+                        {/* <Market />
+                        <News /> */}
                     </div>
                 </main>
             </div>
