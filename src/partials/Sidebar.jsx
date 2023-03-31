@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useState, useEffect} from "react";
+import {useLocation, useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
-
-import SidebarLinkGroup from "./SidebarLinkGroup";
+import {useDispatch} from "react-redux"
+import {GLOBAL_TYPES}  from "../redux/actions/GLOBAL_TYPES"
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
@@ -13,6 +13,20 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
+  const dispatch = useDispatch() ;
+  const navigate = useNavigate() ;
+
+  const handleLogOut = ()=> {
+    dispatch({
+      type: GLOBAL_TYPES.AUTH,
+      payload: {
+        token : "",
+        user: ""
+      }
+    })
+
+    navigate("/") ;
+  }
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded);
@@ -81,7 +95,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             <div className="text-white absolute bottom-0">
               <div className="text-white flex absolute bottom-0">
                 <BiLogOut className="text-5xl" />
-                <button className="text-xl hover:bg-primary-500 rounded w-full">Log out</button>
+                <button onClick={handleLogOut} className="text-xl hover:bg-primary-500 rounded w-full">Log out</button>
               </div>
             </div>
           </div>

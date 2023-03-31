@@ -1,12 +1,12 @@
 import { GLOBAL_TYPES } from "./GLOBAL_TYPES";
-import axios from "axios";
-import { getDataAPI } from "../../utils/fetchData"
+import { postDataAPI } from "../../utils/fetchData"
 
-export const stockDetails = (token) => async (dispatch) => {
+export const purchaseStock = (token, data) => async (dispatch) => {
     try {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
-        const res = await getDataAPI("stock/stocks-data", token);
+        const res = await postDataAPIDataAPI("trade/purchase-stock", token, data);
         const data = res.data.data;
+        console.log(res) 
         dispatch({
             type: GLOBAL_TYPES.STOCK,
             payload: {
@@ -21,10 +21,11 @@ export const stockDetails = (token) => async (dispatch) => {
     }
 }
 
-export const portfolioDetails = (token) => async (dispatch) => {
+export const sellStock = (token, data) => async (dispatch) => {
     try {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
-        const res = await getDataAPI("stock/user-portfolio", token);
+        const res = await postDataAPI("trade/sell-stock", token, data);
+        console.log(res) ;
         dispatch({
             type: GLOBAL_TYPES.STOCK,
             payload: {
