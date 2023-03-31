@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../../css/Home.module.css"
 import Navbar from "../../components/Home/Navbar/Navbar"
 import Instructions from "../../components/Home/Instruction/Instructions";
-import Footer from "../../components/Home/Footer/Footer.";
+import Footer from "../../components/Home/Footer/Footer";
 import Lottie from "lottie-react";
 import animation from '../../assets/stock (2).json'
 
