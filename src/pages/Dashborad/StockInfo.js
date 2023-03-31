@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
-import DashboardCard04 from '../../partials/dashboard/DashboardCard04';
-import DashboardCard11 from '../../partials/dashboard/DashboardCard11';
 import Marketorder from '../../components/StockInfo/Marketorder';
+import StockGraph from "../../components/StockInfo/StockGraph"
+import { customStockDetails } from "../../redux/actions/stockActions";
 
 function StockInfo() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const state = useSelector(state => state);
+
+  const [query, setQuery] = useState({
+    ticker: state.tickerReducer.ticker,
+    timeDuration: "Weekely",
+  })
+  const dispatch = useDispatch() ;
+
+
+  useEffect(() => {
+    dispatch(customStockDetails(state.auth.token, query))
+  }, [])
+
+  const data = useSelector(state => state.stockReducer) ;
+
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -25,7 +41,8 @@ function StockInfo() {
               </div>
             </div>
             <div className="grid grid-cols-12 gap-6">
-                <Marketorder /> 
+              <StockGraph />
+              <Marketorder />
             </div>
           </div>
         </main>

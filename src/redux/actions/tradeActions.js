@@ -4,13 +4,13 @@ import { postDataAPI } from "../../utils/fetchData"
 export const purchaseStock = (token, data) => async (dispatch) => {
     try {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
-        const res = await postDataAPIDataAPI("trade/purchase-stock", token, data);
-        const data = res.data.data;
-        console.log(res) 
+        const res = await postDataAPI("trade/purchase-stock", data, token);
+        const output_data = res.data ;
+        console.log(output_data) ;
         dispatch({
-            type: GLOBAL_TYPES.STOCK,
+            type: GLOBAL_TYPES.TRADE,
             payload: {
-                data: data
+                data: output_data
             }
         })
 

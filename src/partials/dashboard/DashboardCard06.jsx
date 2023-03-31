@@ -1,5 +1,4 @@
 import React from 'react';
-import DoughnutChart from '../../charts/DoughnutChart';
 
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils';

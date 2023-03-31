@@ -4,6 +4,7 @@ import notifyReducer from './notifyReducer';
 import stockReduer from "./stockReducer"
 import tickerReducer from "./tickerReducer"
 import tradeReducer from "./tradeReducer"
+import toggleReducer from "./toggleReducer"
 
 
 export const rootReducer =  combineReducers({
@@ -11,5 +12,6 @@ export const rootReducer =  combineReducers({
     notifyReducer,
     stockReduer,
     tradeReducer,
-    tickerReducer
+    tickerReducer,
+    toggleReducer,
 }) 

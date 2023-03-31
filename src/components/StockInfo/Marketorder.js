@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { GLOBAL_TYPES } from "../../redux/actions/GLOBAL_TYPES";
+import Buy from "../BuyAndSell/Buy";
 
 function Marketorder() {
-  const ticker= useSelector(state => state.ticker)
+  const ticker = useSelector(state => state.tickerReducer)
+  const dispatch = useDispatch();
+
+  
+  const [loading, setLoading] = useState(true)
+
+  const HandleBuy = () => {
+    console.log("HELLO")
+    dispatch({
+      type: GLOBAL_TYPES.TOGGLE,
+      payload: {
+        toggle: "block"
+      }
+    })
+    setLoading(false);
+  }
+
+  let toggle1 = useSelector(state => state.toggleReducer)
+  let toggle = toggle1.toggle ;
+
   return (
     <div className="flex flex-col col-span-full  md:col-span-4 dark:bg-gray-100 shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
@@ -11,6 +32,7 @@ function Marketorder() {
           Market Order
         </h2>
       </header>
+      {toggle == "block" && (<Buy buySellOption="buy" stockPrice={20} stockName="IMD" key={10} />)}
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -62,8 +84,8 @@ function Marketorder() {
                 </tbody>
               </table>
               <div className="text-center py-8">
-                <Link
-                  to="#"
+                <button
+                  onClick={() => HandleBuy()}
                   className="inline-flex w-2/3 items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Buy Now
@@ -80,7 +102,7 @@ function Marketorder() {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                </Link>
+                </button>
               </div>
             </div>
           </div>

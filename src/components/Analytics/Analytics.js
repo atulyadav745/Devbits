@@ -1,7 +1,6 @@
 import React from 'react'
 import DashboardCard04 from '../../partials/dashboard/DashboardCard04'
 import DashboardCard06 from '../../partials/dashboard/DashboardCard06'
-import DashboardCard07 from '../../partials/dashboard/DashboardCard07'
 import Portfolio from './Portfolio'
 
 function Analytics() {

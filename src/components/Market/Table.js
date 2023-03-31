@@ -29,15 +29,15 @@ function Table() {
     }
   }, [])
 
-  const handleClick = (symbol) => {
+  const handleClick = (e) => {
+    console.log(e.symbol)
     dispatch({
       type: GLOBAL_TYPES.TICKER,
       payload: {
-        ticker : symbol,
+        ticker : e.symbol,
       }
     })
-
-    navigate("/stockInfo") ;
+    navigate("/stocksInfo") ;
   }
   return (
     <>
@@ -82,7 +82,7 @@ function Table() {
                   {/* Row */}
                   {stocksData.map((e) => {
                     return (
-                      <tr key={e.symbol} onClick={handleClick(e.symbol)}>
+                      <tr key={e.symbol} onClick={()=> handleClick(e)}>
                         <td className="p-2 cursor-pointer">
                           <div className="text-slate-800 hover:text-slate-500">{e.symbol}</div>
                         </td>

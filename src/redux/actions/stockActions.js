@@ -38,3 +38,22 @@ export const portfolioDetails = (token) => async (dispatch) => {
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
     }
 }
+
+export const customStockDetails = (token, data) => async (dispatch) => {
+    try {
+        dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
+        let ticker = "IBM" ;
+        let timeDuration = "Weekely" ;
+        if( data.ticker)
+        {
+            ticker = data.ticker
+        }
+        if( data.timeDuration)
+        {
+            timeDuration = data.timeDuration
+        }
+        const res = await getDataAPI(`stock/stocksData?symbol=${ticker}&timeDuration=${timeDuration}`, token);
+    } catch (error) {
+        dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
+    }
+}

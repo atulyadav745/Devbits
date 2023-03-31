@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { tailwindConfig } from '../../utils/Utils';
+import { randomData } from "../../utils/randomData";
+
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +13,8 @@ import {
   Legend,
 } from "chart.js";
 
-import { Bar, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -40,31 +44,7 @@ const options = {
 };
 
 const DashboardCard04 = () => {
-  const [data, setData] = useState({
-    labels: [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ],
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(25, 90, 13, 0.5)",
-      },
-      {
-        label: "Dataset 2",
-        data: [],
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  });
+  const [data, setData] = useState(randomData);
   useEffect(() => {
     const fetchData = async () => {
       const API_KEY = "72G4E8C11G2DJQ58";
@@ -119,25 +99,18 @@ const DashboardCard04 = () => {
           });
         })
         .catch((e) => {
-          console.log("error", e);
+          console.log("error");
         });
     };
 
     fetchData();
   }, []);
 
-  // return (
-  //   <>
-  //     <Line data={data} options={options} />
-  //   </>
-  // );
   return (
         <div className="flex flex-col col-span-full md:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
           <header className="px-5 py-4 border-b border-slate-100">
             <h2 className="font-semibold text-slate-800">Direct VS Indirect</h2>
           </header>
-          {/* Chart built with Chart.js 3 */}
-          {/* Change the height attribute to adjust the chart height */}
           <Line data={data}  width={595} height={248}/>
         </div>
       );

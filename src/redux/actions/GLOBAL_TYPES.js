@@ -4,5 +4,6 @@ export const GLOBAL_TYPES = {
     ALERT: 'ALERT',
     STOCK: "STOCK",
     TRADE : "TRADE",
-    TICKER: "TICKER"
+    TICKER: "TICKER",
+    TOGGLE: "TOGGLE"
 }
