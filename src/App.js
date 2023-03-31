@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import "./css/style.css";
-import Data from "./components/SearchBar/Data.json";
 
 import "./charts/ChartjsConfig";
 
@@ -12,7 +11,6 @@ import Stockpage from "./pages/Stockpage"
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
-import SearchBar from "./components/SearchBar/SearchBar";
 import Company from "./pages/Company/Company";
 import BuySell from "./pages/BuyAndSell/BuySell";
 import News from "./pages/News/News";
@@ -46,11 +44,6 @@ function App() {
               stockPrice={"2000"}
             />
           }
-        />
-        <Route
-          exact
-          path="/search"
-          element={<SearchBar placeholder={"enter"} data={Data} />}
         />
       </Routes>
     </>

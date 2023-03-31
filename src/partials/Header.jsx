@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-// import SearchModal from "./header/SearchModal";
+import SearchModal from "./header/SearchModal";
 import Notifications from "./header/Notifications";
 import Help from "./header/Help";
 import UserMenu from "./header/UserMenu";
-import SearchBar from "../components/SearchBar/SearchBar";
-import Data from "../components/SearchBar/Data.json";
+import data from "../assets/Data.json";
 
 function Header({ sidebarOpen, setSidebarOpen }) {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
@@ -40,7 +39,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
 
           {/* Header: Right side */}
           <div className="flex items-center">
-            {/* <button
+            <button
               className={`w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition duration-150 rounded-full ml-3 ${
                 searchModalOpen && "bg-slate-200"
               }`}
@@ -65,9 +64,8 @@ function Header({ sidebarOpen, setSidebarOpen }) {
                   d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z"
                 />
               </svg>
-            </button> */}
-            {/* <SearchModal id="search-modal" searchId="search" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} /> */}
-            <SearchBar placeholder={"enter"} data={Data} />
+            </button>
+            <SearchModal id="search-modal" searchId="search" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} data={data}/>
             <Notifications />
             <Help />
             {/*  Divider */}
