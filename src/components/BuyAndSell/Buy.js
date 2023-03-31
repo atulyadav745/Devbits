@@ -16,7 +16,7 @@ const Buy = ({ buySellOption, stockName, stockPrice }) => {
         toggle: "hidden"
       }
     })
-    navigate("/stocksInfo");
+    navigate("/market");
   };
 
   let state = useSelector(state => state)

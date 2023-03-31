@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Sidebar from '../../partials/Sidebar';
-import Header from '../../partials/Header';
+import Sidebar from '../../components/Sidebar';
+import Header from '../../components/Header';
 import Market from '../../components/Market/Market';
 
 function Dashboard() {
@@ -8,7 +8,7 @@ function Dashboard() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <div className="flex h-screen overflow-hidden">
+        <div className="flex h-screen overflow-hidden bg-slate-700">
             <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
             <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
                 <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
@@ -18,7 +18,7 @@ function Dashboard() {
                             <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
                             </div>
                         </div>
-                        <Market/>
+                        <Market />
                     </div>
                 </main>
             </div>

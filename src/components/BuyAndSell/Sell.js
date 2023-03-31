@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GLOBAL_TYPES } from "../../redux/actions/GLOBAL_TYPES";
 import { sellStock } from "../../redux/actions/tradeActions"
 
-const Buy = ({ buySellOption, stockName, stockPrice }) => {
+const Sell = ({ buySellOption, stockName, stockPrice }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Buy = ({ buySellOption, stockName, stockPrice }) => {
         toggle: "hidden"
       }
     })
-    navigate("/");
+    navigate("/market");
   };
 
   let state = useSelector(state => state)
@@ -152,4 +152,4 @@ const Buy = ({ buySellOption, stockName, stockPrice }) => {
   );
 };
 
-export default Buy;
+export default Sell;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Sidebar from '../../partials/Sidebar';
-import Header from '../../partials/Header';
+import Sidebar from '../../components/Sidebar';
+import Header from '../../components/Header';
 import Marketorder from '../../components/StockInfo/Marketorder';
 import StockGraph from "../../components/StockInfo/StockGraph"
 import { customStockDetails } from "../../redux/actions/stockActions";

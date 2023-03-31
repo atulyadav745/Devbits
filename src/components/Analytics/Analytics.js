@@ -1,6 +1,6 @@
 import React from 'react'
-import DashboardCard04 from '../../partials/dashboard/DashboardCard04'
-import DashboardCard06 from '../../partials/dashboard/DashboardCard06'
+import DashboardCard04 from '../dashboard/DashboardCard04'
+import DashboardCard06 from '../dashboard/DashboardCard06'
 import Portfolio from './Portfolio'
 
 function Analytics() {

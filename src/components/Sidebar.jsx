@@ -45,6 +45,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { name: "Profile", index: "/login" },
   ];
 
+  const handleNavigate = (address) => {
+    navigate(address)
+  }
+
   return (
     <div>
       {/* Sidebar */}
@@ -85,6 +89,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   <li
                     className="text-white text-xl mx-1 hover:bg-primary-500 my-2 rounded p-2"
                     key={i}
+                    onClick={()=> handleNavigate(e.index)}
                   >
                     {e.name}
                   </li>

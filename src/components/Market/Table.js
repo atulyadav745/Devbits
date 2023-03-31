@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import { stockDetails } from "../../redux/actions/stockActions"
 import { GLOBAL_TYPES } from "../../redux/actions/GLOBAL_TYPES";
+import Buy from "../BuyAndSell/Buy"
 
 function Table() {
 
@@ -11,6 +12,11 @@ function Table() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
+
+  const [buyData, setBuyData] = useState({
+    ticker: "IMB", 
+    price: 0,
+})
 
 
   useEffect(() => {
@@ -34,80 +40,79 @@ function Table() {
     dispatch({
       type: GLOBAL_TYPES.TICKER,
       payload: {
-        ticker : e.symbol,
+        ticker: e.symbol,
       }
     })
-    navigate("/stocksInfo") ;
+    navigate("/stocksInfo");
   }
+
+  const handleBuy = async (ticker, price) => {
+    setBuyData({
+        ticker: ticker,
+        price: price,
+    })
+    dispatch({
+      type: GLOBAL_TYPES.TOGGLE,
+      payload: {
+        toggle: "block"
+      }
+    })
+
+  }
+  let toggle1 = useSelector(state => state.toggleReducer)
+  let toggle = toggle1.toggle;
+
+  const LabelNames = ["Company", "Open", "Previous Close", "Change", "BUY"]
+
   return (
     <>
       {loading && <h1>Loading</h1>}
       {!loading && (
         <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
-          <header className="px-5 py-4 border-b border-slate-100">
-            <h2 className="font-semibold text-slate-800">Stocks</h2>
+          {toggle == "block" && (<Buy buySellOption="buy" stockPrice={buyData.price} stockName={buyData.ticker} key={buyData.ticker} />)}
+          <header className="px-5 py-4 border-b border-slate-100 bg-slate-800 text-white">
+            <h2 className="font-bold text-center text-2xl ">Stocks List</h2>
           </header>
           <div className="p-3">
             {/* Table */}
             <div className="overflow-x-auto">
               <table className="table-auto w-full">
                 {/* Table header */}
-                <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+                <thead className="text-xs uppercase text-white bg-slate-600 rounded-sm">
                   <tr>
-                    <th className="p-2">
-                      <div className="font-semibold text-left">
-                        Company Ticker
-                      </div>
-                    </th>
-                    <th className="p-2">
-                      <div className="font-semibold text-center">Open</div>
-                    </th>
-                    <th className="p-2">
-                      <div className="font-semibold text-center">
-                        Previous Close
-                      </div>
-                    </th>
-                    <th className="p-2">
-                      <div className="font-semibold text-center">Change</div>
-                    </th>
-                    <th className="p-2">
-                      <div className="font-semibold text-center">
-                        Percent Change
-                      </div>
-                    </th>
+                    {LabelNames.map((index) => (
+                      <th className="p-3" key={index}>
+                        <div className="font-semibold text-center">{index}</div>
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 {/* Table body */}
-                <tbody className="text-sm font-medium divide-y divide-slate-100">
-                  {/* Row */}
-                  {stocksData.map((e) => {
+                <tbody className="text-base font-medium divide-y divide-slate-100">
+                  {stocksData.map((data) => {
                     return (
-                      <tr key={e.symbol} onClick={()=> handleClick(e)}>
-                        <td className="p-2 cursor-pointer">
-                          <div className="text-slate-800 hover:text-slate-500">{e.symbol}</div>
+                      <tr key={data.ticker}>
+                        <td className="px-2 flex justify-center items-center">
+                          <div className="text-slate-800">{data.symbol}</div>
                         </td>
                         <td className="p-2">
-                          <div className="text-center text-green-500">
-                            {e.open}
-                          </div>
+                          <div className="text-center text-green-600">{data.open}</div>
                         </td>
                         <td className="p-2">
-                          <div className="text-center">{e.previousClose}</div>
+                          <div className="text-center text-red-500">{data.previousClose}</div>
                         </td>
                         <td className="p-2">
-                          <div className="text-center text-sky-500">
-                            {e.change}
-                          </div>
+                          <div className="text-center">{data.pChange}</div>
                         </td>
-                        <td className="p-2">
-                          <div className="text-center text-sky-500">
-                            {e.pChange}
-                          </div>
+                        <td className="p-2 flex justify-center items-center">
+                          <button className='text-center bg-slate-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleBuy(data.ticker, data.price)}>Buy</button>
                         </td>
                       </tr>
-                    );
+                    )
                   })}
+
                 </tbody>
+
               </table>
             </div>
           </div>

@@ -1,12 +1,28 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Transition from "../../utils/Transition";
+import Transition from "../utils/Transition";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"
+import { GLOBAL_TYPES } from "../redux/actions/GLOBAL_TYPES";
+import { BiSearch } from "react-icons/bi";
+
+
 
 function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
   const modalContent = useRef(null);
   const searchInput = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-  // close on click outside
+  const auth = useSelector(state => state.auth);
+
+
+  useEffect(() => {
+    if (!auth.token) {
+      navigate('/');
+    }
+  }, [])
+
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!modalOpen || modalContent.current.contains(target)) return;
@@ -16,36 +32,39 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
     return () => document.removeEventListener("click", clickHandler);
   });
 
-  // close if the esc key is pressed
-  useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
-      if (!modalOpen || keyCode !== 27) return;
-      setModalOpen(false);
-    };
-    document.addEventListener("keydown", keyHandler);
-    return () => document.removeEventListener("keydown", keyHandler);
-  });
 
   useEffect(() => {
     modalOpen && searchInput.current.focus();
   }, [modalOpen]);
 
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(data);
   const [wordEntered, setWordEntered] = useState("");
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
+      return value.Name.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
-      setFilteredData([]);
+      setFilteredData(data);
     } else {
       setFilteredData(newFilter);
     }
   };
+
+  const handleSearchField = (ticker) => {
+    console.log(ticker)
+    dispatch({
+      type: GLOBAL_TYPES.TICKER,
+      payload: {
+        ticker: ticker,
+      }
+    })
+    // setModalOpen(!modalOpen);
+    navigate('/stocksInfo');
+  }
 
   return (
     <>
@@ -64,7 +83,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
       {/* Modal dialog */}
       <Transition
         id={id}
-        className="fixed inset-0 z-50 overflow-hidden flex items-start top-20 mb-4 justify-center transform px-4 sm:px-6"
+        className="fixed inset-0 z-50 overflow-auto flex items-start top-20 mb-4 justify-center transform px-4 sm:px-6"
         role="dialog"
         aria-modal="true"
         show={modalOpen}
@@ -77,7 +96,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
       >
         <div
           ref={modalContent}
-          className="bg-white overflow-auto max-w-2xl w-full max-h-full rounded shadow-lg"
+          className="bg-white overflow-auto max-w-2xl w-full max-h-full rounded shadow-lg scrollbar-hide"
         >
           {/* Search form */}
           <form className="border-b border-slate-200">
@@ -99,14 +118,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
                 type="submit"
                 aria-label="Search"
               >
-                <svg
-                  className="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-4 mr-2"
-                  viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
-                  <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
-                </svg>
+                <BiSearch/>
               </button>
             </div>
           </form>
@@ -114,13 +126,13 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
             <ul className="text-sm">
               {filteredData.length ? (
                 <div className="dataResult">
-                  {filteredData.slice(0, 15).map((value, key) => {
+                  {filteredData.slice(0, 30).map((value, key) => {
                     return (
                       <li key={key}>
                         <Link
                           className="flex items-center p-2 text-slate-800 hover:text-white hover:bg-indigo-500 rounded group"
-                          to="#0"
-                          onClick={() => setModalOpen(!modalOpen)}
+                          to="/stocksInfo"
+                          onClick={(e) => handleSearchField(value.Symbol)}
                         >
                           <svg
                             className="w-4 h-4 fill-current text-slate-400 group-hover:text-white group-hover:text-opacity-50 shrink-0 mr-3"
@@ -128,7 +140,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
                           >
                             <path d="M15.707 14.293v.001a1 1 0 01-1.414 1.414L11.185 12.6A6.935 6.935 0 017 14a7.016 7.016 0 01-5.173-2.308l-1.537 1.3L0 8l4.873 1.12-1.521 1.285a4.971 4.971 0 008.59-2.835l1.979.454a6.971 6.971 0 01-1.321 3.157l3.107 3.112zM14 6L9.127 4.88l1.521-1.28a4.971 4.971 0 00-8.59 2.83L.084 5.976a6.977 6.977 0 0112.089-3.668l1.537-1.3L14 6z" />
                           </svg>
-                          <span>{value.title}</span>
+                          <span>{value.Name}</span>
                         </Link>
                       </li>
                     );

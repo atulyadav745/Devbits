@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
-import Analytics from '../../components/Analytics/Analytics';
+import News from "../../components/News/News"
 
 function Dashboard() {
 
@@ -18,7 +18,7 @@ function Dashboard() {
                             <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
                             </div>
                         </div>
-                        <Analytics />
+                        <News/>
                     </div>
                 </main>
             </div>

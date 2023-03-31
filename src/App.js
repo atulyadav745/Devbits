@@ -13,13 +13,14 @@ import StocksInfo from "./pages/Dashborad/StockInfo"
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
+import News from "./pages/Dashborad/NewsPage";
 
 
 function App() {
   const location = useLocation();
   const auth = useSelector(state => state.auth)
   let token = ""
-  if(auth && auth.token) token = auth.token
+  if (auth && auth.token) token = auth.token
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
@@ -33,9 +34,10 @@ function App() {
         <Route index element={token ? <Dashboard /> : <Home />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/stocks" element={<Stocks/>} />
-        <Route exact path="/stocksInfo" element={<StocksInfo/>} />
+        <Route exact path="/market" element={token ? <Stocks /> : <Login />} />
+        <Route exact path="/stockInfo" element={token ? <StocksInfo /> : <Login />} />
         <Route exact path="/dashboard" element={token ? <Dashboard /> : <Login />} />
+        <Route exact path="/news" element={token ? <News/> : <Login />} />
       </Routes>
     </>
   );

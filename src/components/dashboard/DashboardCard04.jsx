@@ -5,6 +5,8 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -15,6 +17,8 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
@@ -30,7 +34,7 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "left",
+      position: "top",
     },
     title: {
       display: true,
@@ -92,8 +96,6 @@ const DashboardCard04 = () => {
               {
                 label: "High",
                 data: dataSet1,
-                // borderColor: "rgb(255, 99, 132)",
-                // backgroundColor: "rgba(99, 132, 0.5)",
                 borderColor: tailwindConfig().theme.colors.indigo[500],
                 fill: false,
                 borderWidth: 2,
@@ -105,8 +107,6 @@ const DashboardCard04 = () => {
               {
                 label: "Low",
                 data: dataSet2,
-                // borderColor: "rgb(53, 162, 235)",
-                // backgroundColor: "rgba(53, 235, 0.5)",
                 borderColor: tailwindConfig().theme.colors.green[500],
                 fill: false,
                 borderWidth: 2,
@@ -126,21 +126,14 @@ const DashboardCard04 = () => {
     fetchData();
   }, []);
 
-  // return (
-  //   <>
-  //     <Line data={data} options={options} />
-  //   </>
-  // );
   return (
-        <div className="flex flex-col col-span-full md:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
-          <header className="px-5 py-4 border-b border-slate-100">
-            <h2 className="font-semibold text-slate-800">Direct VS Indirect</h2>
-          </header>
-          {/* Chart built with Chart.js 3 */}
-          {/* Change the height attribute to adjust the chart height */}
-          <Line data={data}  width={595} height={248}/>
-        </div>
-      );
+    <div className="flex flex-col col-span-full md:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
+      <header className="px-5 py-4 border-b border-slate-100">
+        <h2 className="font-bold text-center text-slate-800">Line Chart Of IMB Stock</h2>
+      </header>
+      <Line  data={data}/>
+    </div>
+  );
 };
 
 export default DashboardCard04;
