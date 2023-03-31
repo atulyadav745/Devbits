@@ -141,7 +141,6 @@ const DashboardCard04 = () => {
             dataSet2.push(res1[key]["3. low"]);
             labelSet.push(key);
           });
-          console.log(dataSet1);
           setData({
             labels: labelSet,
             datasets: [

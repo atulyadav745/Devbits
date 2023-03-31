@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import {useSelector} from "react-redux"
 
 import "./css/style.css";
 import Data from "./components/SearchBar/Data.json";
@@ -19,7 +20,9 @@ import News from "./pages/News/News";
 
 function App() {
   const location = useLocation();
-
+  let token ;
+  const auth = useSelector(state => state.auth) 
+  
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
     window.scroll({ top: 0 });
@@ -29,14 +32,12 @@ function App() {
   return (
     <>
       <Routes>
-        <Route index element={<Home />} />
-        <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/stockpage" element={<Stockpage/>} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
-        <Route exact path="/company" element={<Company />} />
+        <Route index element={ auth.token ?  <Dashboard/> :<Home />} />
+        <Route exact path="/signup" element={auth.token ? <Dashboard/> : <Signup />} />
+        <Route exact path="/login" element={auth.token ? <Dashboard/> : <Login />} />
         <Route exact path="/news" element={<News />} />
-        <Route
+        <Route exact path = "/table" element={<Company/>} ></Route>
+        {/* <Route
           exact
           path="/buysell"
           element={
@@ -51,7 +52,7 @@ function App() {
           exact
           path="/search"
           element={<SearchBar placeholder={"enter"} data={Data} />}
-        />
+        /> */}
       </Routes>
     </>
   );

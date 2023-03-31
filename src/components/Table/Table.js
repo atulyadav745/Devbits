@@ -1,37 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"
+import { stockDetails } from "../../redux/actions/stockActions"
 
 function Table() {
-  const url = "https://stock-trading-platform.onrender.com/stock/stocks-data";
-
-  const headers = {
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDI0MWY5MGVhYmJlMTEyOGY5YjA5YjciLCJpYXQiOjE2ODAwODg5NzZ9.NRabMvFQh2sSZqFQ0ymfVjAha18824wLpEW0-_UQJbU",
-  };
 
   const [stocksData, setStocksData] = useState({});
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
 
-  const getStocksData = async () =>
-    await fetch(url, {
-      headers: headers,
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("OK");
-          return response.json();
-        } else {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-      })
-      .then((res) => {
-        setStocksData(res);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
 
-  getStocksData();
+  useEffect(() => {
+    if (!auth.token) {
+      navigate('/');
+    }
+    dispatch(stockDetails(auth.token))
+  }, [])
+
+  const data = useSelector(state => state.stockReduer)
+  useEffect(() => {
+    if (data.data) {
+      setStocksData(data.data);
+      setLoading(false);
+    }
+  }, [])
+
 
   return (
     <>
@@ -74,9 +69,9 @@ function Table() {
                 {/* Table body */}
                 <tbody className="text-sm font-medium divide-y divide-slate-100">
                   {/* Row */}
-                  {stocksData.data.map((e) => {
+                  {stocksData.map((e) => {
                     return (
-                      <tr>
+                      <tr key={e.symbol}>
                         <td className="p-2">
                           <div className="text-slate-800">{e.symbol}</div>
                         </td>
