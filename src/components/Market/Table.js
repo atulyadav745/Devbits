@@ -20,6 +20,7 @@ function Table() {
   }, [])
 
   const data = useSelector(state => state.stockReduer)
+
   useEffect(() => {
     if (data.data) {
       setStocksData(data.data);

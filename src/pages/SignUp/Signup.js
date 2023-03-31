@@ -9,8 +9,16 @@ const Signup = () => {
   const [userData, setUserData] = useState(initialState);
   const { email, password, username } = userData;
   const dispatch = useDispatch();
-  // const {auth} = useSelector(state => state.default) ;
   const navigate = useNavigate();
+
+  const auth = useSelector(state => state.default) ;
+
+  useEffect(()=>{
+    if(auth.token)
+    {
+      navigate("/dashboard")
+    }
+  },[])
 
   const handleSubmit = (e) => {
     console.log("hi");
@@ -55,7 +63,7 @@ const Signup = () => {
                     Your email
                   </label>
                   <input
-                    value={userData.email}
+                    value={email}
                     type="email"
                     name="email"
                     id="email"

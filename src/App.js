@@ -1,26 +1,22 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 
 import "./css/style.css";
 
 import "./charts/ChartjsConfig";
 
 // Import pages
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashborad/Dashboard";
 import Stockpage from "./pages/Stockpage"
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
-import Company from "./pages/Company/Company";
-import BuySell from "./pages/BuyAndSell/BuySell";
-import News from "./pages/News/News";
 
 function App() {
   const location = useLocation();
-  let token ;
-  const auth = useSelector(state => state.auth) 
-  
+  const auth = useSelector(state => state.auth)
+
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
     window.scroll({ top: 0 });
@@ -30,22 +26,11 @@ function App() {
   return (
     <>
       <Routes>
-        <Route index element={ auth.token ?  <Dashboard/> :<Home />} />
-        <Route exact path="/signup" element={auth.token ? <Dashboard/> : <Signup />} />
-        <Route exact path="/login" element={auth.token ? <Dashboard/> : <Login />} />
-        <Route exact path="/news" element={<News />} />
-        <Route exact path = "/table" element={<Company/>} ></Route>
-        {/* <Route
-          exact
-          path="/buysell"
-          element={
-            <BuySell
-              buySellOption={"Buy"}
-              stockName={"NIFTY50"}
-              stockPrice={"2000"}
-            />
-          }
-        />*/}
+        <Route index element={auth.token ? <Dashboard /> : <Home />} />
+        <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/table" element={<Stockpage/>} />
+        <Route exact path="/dashboard" element={auth.token ? <Dashboard /> : <Login />} />
       </Routes>
     </>
   );

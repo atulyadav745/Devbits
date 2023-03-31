@@ -1,6 +1,6 @@
 import { GLOBAL_TYPES } from "./GLOBAL_TYPES";
 import axios from "axios";
-import { getDataAPI } from "../../Utils/fetchData"
+import { getDataAPI } from "../../utils/fetchData"
 
 export const stockDetails = (token) => async (dispatch) => {
     try {

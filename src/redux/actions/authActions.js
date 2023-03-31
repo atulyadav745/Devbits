@@ -1,6 +1,6 @@
 import { GLOBAL_TYPES } from "./GLOBAL_TYPES";
 import axios from "axios";
-import { postDataAPI } from "../../Utils/fetchData"
+import { postDataAPI } from "../../utils/fetchData"
 
 export const register = (data) => async (dispatch) => {
     try {
