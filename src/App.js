@@ -45,7 +45,7 @@ function App() {
               stockPrice={"2000"}
             />
           }
-        />
+        />*/}
       </Routes>
     </>
   );
