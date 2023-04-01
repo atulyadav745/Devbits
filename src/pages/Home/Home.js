@@ -5,6 +5,7 @@ import Navbar from "../../components/Home/Navbar/Navbar"
 import Instructions from "../../components/Home/Instruction/Instructions";
 import Footer from "../../components/Home/Footer/Footer";
 import Team from "../Team/Team.js";
+import About from "../About/About";
 
 function Home() {
   return (
@@ -51,6 +52,7 @@ function Home() {
         </section>
       </div>
       <Instructions />
+      <About/>
       <Team/>
      <div>
      <Footer/>
