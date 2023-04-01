@@ -130,7 +130,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
                       <li key={key}>
                         <Link
                           className="flex items-center p-2 text-slate-800 hover:text-white hover:bg-indigo-500 rounded group"
-                          to="/stocksInfo"
+                          to="/stockInfo"
                           onClick={(e) => handleSearchField(value.Symbol)}
                         >
                           <svg
