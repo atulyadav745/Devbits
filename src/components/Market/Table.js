@@ -40,9 +40,9 @@ function Table() {
     }
   }, [])
 
-  useEffect(()=> {
-    location.reload() ;
-  },[])
+  // useEffect(()=> {
+  //   location.reload() ;
+  // },[])
 
   // const handleClick = (e) => {
   //   console.log(e.symbol)
