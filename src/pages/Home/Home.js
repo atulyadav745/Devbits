@@ -4,6 +4,7 @@ import styles from "../../css/Home.module.css"
 import Navbar from "../../components/Home/Navbar/Navbar"
 import Instructions from "../../components/Home/Instruction/Instructions";
 import Footer from "../../components/Home/Footer/Footer";
+import Team from "../Team/Team.js";
 
 function Home() {
   return (
@@ -50,6 +51,7 @@ function Home() {
         </section>
       </div>
       <Instructions />
+      <Team/>
      <div>
      <Footer/>
      </div>
