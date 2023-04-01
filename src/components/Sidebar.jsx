@@ -2,8 +2,9 @@ import React, { useState, useEffect} from "react";
 import {useLocation, useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {GLOBAL_TYPES}  from "../redux/actions/GLOBAL_TYPES"
+import image from "../assets/user.png"
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
@@ -13,6 +14,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
+
+  const auth = useSelector(state => state.auth) ;
+
   const dispatch = useDispatch() ;
   const navigate = useNavigate() ;
 
@@ -75,11 +79,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         <div className="">
           <div className="mx-auto">
             <img
-              className="rounded-full mx-auto"
-              src="/assets/user-avatar.png"
+              className=""
+              src={image}
               alt="ProfilePic"
             />
-            <p className="text-white text-center m-3">Profile</p>
+            <p className="text-slate-300 text-center m-5 text-4xl"> {auth.user.username.toUpperCase()}</p>
           </div>
           <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
           <div>
@@ -87,7 +91,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               {dashboardLinks.map((e, i) => {
                 return (
                   <li
-                    className="text-white text-xl mx-1 hover:bg-primary-500 my-2 rounded p-2"
+                    className="text-white text-xl mx-1 hover:bg-slate-600  cursor-pointer my-2 rounded p-2"
                     key={i}
                     onClick={()=> handleNavigate(e.index)}
                   >
