@@ -14,6 +14,11 @@ function Portfolio() {
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
 
+    const [sellData, setSellData] = useState({
+        ticker: "IMB",
+        price: 0,
+    })
+
     useEffect(() => {
         if (!auth.token) {
             navigate('/');
@@ -23,10 +28,6 @@ function Portfolio() {
     }, [])
 
     const data = useSelector(state => state.stockReduer)
-    const [sellData, setSellData] = useState({
-        ticker: "IMB",
-        price: 0,
-    })
 
     useEffect(() => {
         if (data.data) {
@@ -37,10 +38,10 @@ function Portfolio() {
         }
     }, [])
 
-    const handleSell = async (ticker, price) => {
+    const handleSell = async (data) => {
         setSellData({
-            ticker: ticker,
-            price: price,
+            ticker: data.ticker,
+            price: data.price/data.quantity,
         })
         dispatch({
             type: GLOBAL_TYPES.TOGGLE,
@@ -63,7 +64,7 @@ function Portfolio() {
             <header className="px-5 py-4 border-b border-slate-100 bg-slate-800 text-white">
                 <h2 className="font-bold text-center text-2xl ">Your Portfolio</h2>
             </header>
-            {toggle == "block" && (<Sell buySellOption="buy" stockPrice={sellData.price} stockName={sellData.ticker} key={sellData.ticker} />)}
+            {toggle == "block" && (<Sell stockPrice={sellData.price} stockName={sellData.ticker} key={sellData.ticker} />)}
             <div className="p-3">
 
                 {/* Table */}
@@ -101,9 +102,8 @@ function Portfolio() {
                                     <tbody className="text-base font-medium divide-y divide-slate-400 bg-slate-300">
                                         {
                                             Array.from(portfolio).map((data) => {
-                                                console.log(data) ;
                                                 return (
-                                                    <tr key={data.ticker} className>
+                                                    <tr key={data.ticker}>
                                                         <td className="px-2 text-xl font-bold flex justify-center items-center">
                                                             <div className="text-slate-800">{data.ticker}</div>
                                                         </td>
@@ -117,7 +117,7 @@ function Portfolio() {
                                                             <div className="px-2 text-xl font-bold text-center">{data.price/data.quantity}</div>
                                                         </td>
                                                         <td className="p-2 flex justify-center items-center">
-                                                            <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data.ticker, data.price)}>Sell</button>
+                                                            <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data)}>Sell</button>
                                                         </td>
                                                     </tr>
                                                 )

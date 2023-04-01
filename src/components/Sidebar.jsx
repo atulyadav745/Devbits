@@ -96,11 +96,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 );
               })}
             </ul>
-              <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-            <div className="text-white absolute bottom-0">
-              <div className="text-white flex absolute bottom-0">
+              <hr class="h-px my-8  border-0 bg-gray-700"></hr>
+            <div className="text-white absolute bottom-0  p-5 w-full">
+              <div className="text-white flex ">
                 <BiLogOut className="text-5xl" />
-                <button onClick={handleLogOut} className="text-xl hover:bg-primary-500 rounded w-full">Log out</button>
+                <button onClick={handleLogOut} className="text-xl hover:bg-slate-600 rounded w-1/2">Log out</button>
               </div>
             </div>
           </div>

@@ -4,25 +4,27 @@ import { useSelector, useDispatch } from "react-redux"
 import { stockDetails } from "../../redux/actions/stockActions"
 import { GLOBAL_TYPES } from "../../redux/actions/GLOBAL_TYPES";
 import Buy from "../BuyAndSell/Buy"
+import { GridLoader } from "react-spinners";
 
 function Table() {
 
   const [stocksData, setStocksData] = useState({});
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
-
-  const [buyData, setBuyData] = useState({
-    ticker: "IMB", 
+  const initialState = {
+    ticker: "IMB",
     price: 0,
-})
+  }
+  const [buyData, setBuyData] = useState(initialState)
 
 
   useEffect(() => {
     if (!auth.token) {
       navigate('/');
     }
+    setLoading(true)
     dispatch(stockDetails(auth.token))
   }, [])
 
@@ -31,25 +33,27 @@ function Table() {
   useEffect(() => {
     if (data.data) {
       setStocksData(data.data);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     }
   }, [])
 
-  const handleClick = (e) => {
-    console.log(e.symbol)
-    dispatch({
-      type: GLOBAL_TYPES.TICKER,
-      payload: {
-        ticker: e.symbol,
-      }
-    })
-    navigate("/stocksInfo");
-  }
+  // const handleClick = (e) => {
+  //   console.log(e.symbol)
+  //   dispatch({
+  //     type: GLOBAL_TYPES.TICKER,
+  //     payload: {
+  //       ticker: e.symbol,
+  //     }
+  //   })
+  //   navigate("/stocksInfo");
+  // }
 
-  const handleBuy = async (ticker, price) => {
+  const handleBuy = async (data) => {
     setBuyData({
-        ticker: ticker,
-        price: price,
+      ticker: data.symbol,
+      price: data.open,
     })
     dispatch({
       type: GLOBAL_TYPES.TOGGLE,
@@ -65,20 +69,41 @@ function Table() {
   const LabelNames = ["Company", "Open", "Previous Close", "Change", "BUY"]
 
   return (
-    <>
-      {loading && <h1>Loading</h1>}
-      {!loading && (
-        <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
-          {toggle == "block" && (<Buy buySellOption="buy" stockPrice={buyData.price} stockName={buyData.ticker} key={buyData.ticker} />)}
-          <header className="px-5 py-4 border-b border-slate-100 bg-slate-800 text-white">
-            <h2 className="font-bold text-center text-2xl ">Stocks List</h2>
-          </header>
-          <div className="p-3">
-            {/* Table */}
-            <div className="overflow-x-auto">
+
+    <div className="col-span-full xl:col-span-12 bg-slate-100 shadow-lg rounded-3xl border border-slate-800">
+
+      <header className="px-5 py-4 border-b border-slate-100 bg-slate-800 text-white">
+        <h2 className="font-bold text-center text-2xl ">Market Stocks List</h2>
+      </header>
+
+      {toggle == "block" && (<Buy stockPrice={buyData.price} stockName={buyData.ticker} key={buyData.ticker} />)}
+
+      <div className="p-3">
+
+        {/* Table */}
+        <div className="overflow-x-auto max-h-[80vh]">
+
+          {loading ?
+            (
+              <div className='w-full mx-auto p-8' >
+                <div className=' p-8 flex justify-center'>
+                  <GridLoader
+                    color="#3246a8"
+                    loading="true"
+                    size={50}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                    className='mx-auto'
+                  />
+                </div>
+              </div>
+
+            )
+            :
+            (
               <table className="table-auto w-full">
                 {/* Table header */}
-                <thead className="text-xs uppercase text-white bg-slate-600 rounded-sm">
+                <thead className="text-xs uppercase text-white bg-slate-600 rounded-md">
                   <tr>
                     {LabelNames.map((index) => (
                       <th className="p-3" key={index}>
@@ -88,37 +113,40 @@ function Table() {
                   </tr>
                 </thead>
                 {/* Table body */}
-                <tbody className="text-base font-medium divide-y divide-slate-100">
-                  {stocksData.map((data) => {
-                    return (
-                      <tr key={data.ticker}>
-                        <td className="px-2 flex justify-center items-center">
-                          <div className="text-slate-800">{data.symbol}</div>
-                        </td>
-                        <td className="p-2">
-                          <div className="text-center text-green-600">{data.open}</div>
-                        </td>
-                        <td className="p-2">
-                          <div className="text-center text-red-500">{data.previousClose}</div>
-                        </td>
-                        <td className="p-2">
-                          <div className="text-center">{data.pChange}</div>
-                        </td>
-                        <td className="p-2 flex justify-center items-center">
-                          <button className='text-center bg-slate-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleBuy(data.ticker, data.price)}>Buy</button>
-                        </td>
-                      </tr>
-                    )
-                  })}
+                <tbody className="text-base font-medium divide-y divide-slate-400 bg-slate-300">
+                  {
+                    Array.from(stocksData).map((data) => {
+                      return (
+                        <tr key={data.ticker}>
+                          <td className="px-2 text-xl font-bold flex justify-center items-center">
+                            <div className="text-slate-800">{data.symbol}</div>
+                          </td>
+                          <td className="px-2 text-xl font-bold ">
+                            <div className="text-center text-gray-800">{data.open}</div>
+                          </td>
+                          <td className="p-2 text-xl font-bold">
+                            <div className="text-center text-gray-800">{data.previousClose}</div>
+                          </td>
+                          <td className="p-2 text-xl font-extrabold">
+                            <div className={data.pChange >= 0 ? "text-center text-green-500" : "text-center text-red-500"} > {data.pChange} </div>
+                          </td>
+                          <td className="p-2 flex justify-center items-center">
+                            <button className='text-center w-1/2 bg-slate-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleBuy(data)}>Buy</button>
+                          </td>
+                        </tr>
+                      )
+                    })
+                  }
 
                 </tbody>
 
               </table>
-            </div>
-          </div>
+
+            )
+          }
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
 
