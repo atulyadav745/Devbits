@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
-import { portfolioDetails } from "../../redux/actions/stockActions"
+import { portfolioDetails } from "../../redux/actions/portfolioActions"
 import { GLOBAL_TYPES } from '../../redux/actions/GLOBAL_TYPES';
 import Sell from '../BuyAndSell/Sell';
 import { GridLoader } from "react-spinners";
@@ -27,7 +27,7 @@ function Portfolio() {
         dispatch(portfolioDetails(auth.token))
     }, [])
 
-    const data = useSelector(state => state.stockReduer)
+    const data = useSelector(state => state.portfolio)
 
     useEffect(() => {
         if (data.data) {
@@ -35,6 +35,8 @@ function Portfolio() {
             setTimeout(() => {
                 setLoading(false);
             }, 2000);
+
+            console.log(data) ;
         }
     }, [])
 
@@ -49,7 +51,6 @@ function Portfolio() {
                 toggle: "block"
             }
         })
-
     }
 
     let toggle1 = useSelector(state => state.toggleReducer)
@@ -111,10 +112,10 @@ function Portfolio() {
                                                             <div className="text-center">{data.quantity}</div>
                                                         </td>
                                                         <td className="p-2">
-                                                            <div className="px-2 text-xl font-bold text-center ">{data.price/data.quantity}</div>
+                                                            <div className="px-2 text-xl font-bold text-center ">{data.price}</div>
                                                         </td>
                                                         <td className="p-2">
-                                                            <div className="px-2 text-xl font-bold text-center">{data.price/data.quantity}</div>
+                                                            <div className="px-2 text-xl font-bold text-center">{data.price}</div>
                                                         </td>
                                                         <td className="p-2 flex justify-center items-center">
                                                             <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data)}>Sell</button>

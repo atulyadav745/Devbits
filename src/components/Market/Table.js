@@ -36,24 +36,11 @@ function Table() {
       setStocksData(data.data);
       setTimeout(() => {
         setLoading(false);
-      }, 2000);
+      }, 2000) ;
     }
   }, [])
 
-  // useEffect(()=> {
-  //   location.reload() ;
-  // },[])
 
-  // const handleClick = (e) => {
-  //   console.log(e.symbol)
-  //   dispatch({
-  //     type: GLOBAL_TYPES.TICKER,
-  //     payload: {
-  //       ticker: e.symbol,
-  //     }
-  //   })
-  //   navigate("/stocksInfo");
-  // }
 
   const handleBuy = async (data) => {
     setBuyData({
