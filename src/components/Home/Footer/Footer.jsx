@@ -11,7 +11,7 @@ const Footer = () => {
         <h2 className="text-3xl my-5">Bull Traders</h2>
         <p className="flex justify-start items-center">
           <IoLocationOutline className="mr-1" />
-          Location: Shamshan Gali
+          Location: IIT BHU Varanasi
         </p>
         <p className="flex justify-start items-center">
           <AiOutlinePhone className="mr-1" />

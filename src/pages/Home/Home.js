@@ -6,6 +6,7 @@ import Instructions from "../../components/Home/Instruction/Instructions";
 import Footer from "../../components/Home/Footer/Footer";
 import Team from "../Team/Team.js";
 import About from "../About/About";
+import Accordion from "../Accordion/Accordion";
 
 function Home() {
   return (
@@ -54,6 +55,7 @@ function Home() {
       <Instructions />
       <About/>
       <Team/>
+      <Accordion/>
      <div>
      <Footer/>
      </div>
