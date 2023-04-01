@@ -63,7 +63,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
       }
     })
     // setModalOpen(!modalOpen);
-    navigate('/stocksInfo');
+    navigate('/stockInfo');
   }
 
   return (

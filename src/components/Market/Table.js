@@ -24,6 +24,7 @@ function Table() {
     if (!auth.token) {
       navigate('/');
     }
+
     setLoading(true)
     dispatch(stockDetails(auth.token))
   }, [])
@@ -38,6 +39,10 @@ function Table() {
       }, 2000);
     }
   }, [])
+
+  useEffect(()=> {
+    location.reload() ;
+  },[])
 
   // const handleClick = (e) => {
   //   console.log(e.symbol)
