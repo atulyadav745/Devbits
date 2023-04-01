@@ -62,7 +62,6 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
         ticker: ticker,
       }
     })
-    // setModalOpen(!modalOpen);
     navigate('/stockInfo');
   }
 
