@@ -7,7 +7,7 @@ function About() {
     {/* <!-- component --> */}
 <div className="container dark:bg-gray-900 mx-auto w-full h-full">
   <div className="relative wrap overflow-hidden p-10 h-full">
-    <div className="border-2-2 absolute border-opacity-20 border-gray-700 h-full border left-[50%] flex" ></div>
+    <div className="border-2-2 absolute border-opacity-0 border-gray-700 h-full border left-[50%] flex" ></div>
     {/* <!-- right timeline --> */}
     <div className="mb-8 justify-between items-center w-full right-timeline flex">
     <div className="md:order-1 md:w-5/12"></div>
