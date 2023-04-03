@@ -1,5 +1,6 @@
 import { GLOBAL_TYPES } from "./GLOBAL_TYPES";
 import { postDataAPI } from "../../utils/fetchData"
+import { useNavigate } from "react-router-dom";
 
 export const purchaseStock = (token, data) => async (dispatch) => {
     try {
@@ -13,10 +14,9 @@ export const purchaseStock = (token, data) => async (dispatch) => {
                 data: output_data
             }
         })
-
-        // dispatch({ type: GLOBAL_TYPES.ALERT, payload: { message: "Registered Sucessfully" } })
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
     } catch (error) {
+        dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
     }
 }
@@ -32,10 +32,9 @@ export const sellStock = (token, data) => async (dispatch) => {
                 data: res.data
             }
         })
-
-        // dispatch({ type: GLOBAL_TYPES.ALERT, payload: { message: "Registered Sucessfully" } })
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
     } catch (error) {
+        dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
     }
 }

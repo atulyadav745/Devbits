@@ -16,7 +16,7 @@ const Sell = ({ stockName, stockPrice }) => {
         toggle: "hidden"
       }
     })
-    navigate("/market");
+    navigate("/");
   };
 
   let state = useSelector(state => state)
@@ -34,6 +34,12 @@ const Sell = ({ stockName, stockPrice }) => {
       price: stockPrice,
       quantity: stockQuantity
     }
+    dispatch({
+      type: GLOBAL_TYPES.TOGGLE,
+      payload: {
+        toggle: "hidden"
+      }
+    })
     dispatch(sellStock(state.auth.token, data));
     navigate("/");
   }
