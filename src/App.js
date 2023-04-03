@@ -14,6 +14,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
 import News from "./pages/Dashborad/NewsPage";
+import Loading from "./components/Loading/loading"
 
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
         <Route exact path="/stockInfo" element={token ? <StocksInfo /> : <Login />} />
         <Route exact path="/dashboard" element={token ? <Dashboard /> : <Login />} />
         <Route exact path="/news" element={token ? <News/> : <Login />} />
+        {/* <Route exact path="/loading" element={token ? <Loading/> : <Login />} /> */}
+
       </Routes>
     </>
   );

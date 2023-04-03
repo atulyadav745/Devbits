@@ -24,9 +24,7 @@ const Login = () => {
   },[])
 
   const handleSubmit = (e) => {
-    console.log("hi");
     e.preventDefault();
-    console.log(userData);
     dispatch(login(userData));
     navigate("/dashboard")
   };

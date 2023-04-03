@@ -96,16 +96,16 @@ const Signup = () => {
                 </div>
                 <div>
                   <label
-                    htmlFor="confirm-password"
+                    htmlFor="username"
                     className="block mb-2 text-sm font-medium text-white"
                   >
-                    Confirm password
+                    Username
                   </label>
                   <input
                     type="username"
                     name="username"
-                    id="confirm-password"
-                    placeholder="••••••••"
+                    id="username"
+                    placeholder="john"
                     className="border sm:text-sm rounded-lg mb-4 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
                     required=""
                     value={username}
