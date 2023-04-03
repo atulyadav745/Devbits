@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GLOBAL_TYPES } from "../../redux/actions/GLOBAL_TYPES";
 import { purchaseStock } from "../../redux/actions/tradeActions"
 
-const Buy = ({stockName, stockPrice }) => {
+const Buy = ({ stockName, stockPrice }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,6 +29,13 @@ const Buy = ({stockName, stockPrice }) => {
   };
 
   const handleBuy = () => {
+
+    dispatch({
+      type: GLOBAL_TYPES.TOGGLE,
+      payload: {
+        toggle: "hidden"
+      }
+    })
     const data = {
       ticker: stockName,
       price: stockPrice,

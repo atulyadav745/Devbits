@@ -6,6 +6,7 @@ import { getDataAPI } from "../../utils/fetchData"
 
 export const portfolioDetails = (token) => async (dispatch) => {
     try {
+        dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
         const res = await getDataAPI("stock/user-portfolio", token);
         dispatch({
             type: GLOBAL_TYPES.PORTFOLIO,
