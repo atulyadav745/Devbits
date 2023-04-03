@@ -20,6 +20,7 @@ export const register = (data) => async (dispatch) => {
 
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { message: "Registered Sucessfully" } })
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
+
     } catch (error) {
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
     }

@@ -14,12 +14,13 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
 import News from "./pages/Dashborad/NewsPage";
-import Loading from "./components/Loading/loading"
+import Notify from "./components/Alert/Notify"
 
 
 function App() {
   const location = useLocation();
   const auth = useSelector(state => state.auth)
+  const notify = useSelector(state => state.notifyReducer)
   let token = ""
   if (auth && auth.token) token = auth.token
 
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <>
+      <Notify />
       <Routes>
         <Route index element={token ? <Dashboard /> : <Home />} />
         <Route exact path="/signup" element={<Signup />} />
@@ -38,7 +40,7 @@ function App() {
         <Route exact path="/market" element={token ? <Stocks /> : <Login />} />
         <Route exact path="/stockInfo" element={token ? <StocksInfo /> : <Login />} />
         <Route exact path="/dashboard" element={token ? <Dashboard /> : <Login />} />
-        <Route exact path="/news" element={token ? <News/> : <Login />} />
+        <Route exact path="/news" element={token ? <News /> : <Login />} />
         {/* <Route exact path="/loading" element={token ? <Loading/> : <Login />} /> */}
 
       </Routes>

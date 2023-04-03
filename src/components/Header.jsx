@@ -13,7 +13,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
           {/* Header: Left side */}
           <div className="flex">
             <button
-              className="text-slate-500 hover:text-slate-600 lg:hidden"
+              className="text-slate-500 hover:text-slate-600 xl:hidden"
               aria-controls="sidebar"
               aria-expanded={sidebarOpen}
               onClick={(e) => {

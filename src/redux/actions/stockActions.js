@@ -4,7 +4,6 @@ import { getDataAPI } from "../../utils/fetchData"
 
 export const stockDetails = (token) => async (dispatch) => {
     try {
-        dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
         const res = await getDataAPI("stock/stocks-data", token);
         const data = res.data.data;
         dispatch({
@@ -13,9 +12,6 @@ export const stockDetails = (token) => async (dispatch) => {
                 data: data
             }
         })
-
-        // dispatch({ type: GLOBAL_TYPES.ALERT, payload: { message: "Registered Sucessfully" } })
-        dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
     } catch (error) {
         dispatch({ type: GLOBAL_TYPES.ALERT, payload: { error: "Some Error Occured" } })
     }
@@ -24,15 +20,12 @@ export const stockDetails = (token) => async (dispatch) => {
 
 export const customStockDetails = (token, data) => async (dispatch) => {
     try {
-        dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
-        let ticker = "IBM" ;
-        let timeDuration = "Weekely" ;
-        if( data.ticker)
-        {
+        let ticker = "IBM";
+        let timeDuration = "Weekely";
+        if (data.ticker) {
             ticker = data.ticker
         }
-        if( data.timeDuration)
-        {
+        if (data.timeDuration) {
             timeDuration = data.timeDuration
         }
         const res = await getDataAPI(`stock/stocksData?symbol=${ticker}&timeDuration=${timeDuration}`, token);
