@@ -1,4 +1,8 @@
 import React from 'react'
+import Lottie from "lottie-react";
+import avatar from "../../assets/avatar.json"
+import avatar2 from "../../assets/avatar2.json"
+import avatar3 from "../../assets/avatar3.json"
 
 function Team() {
     return (
@@ -12,7 +16,8 @@ function Team() {
                     <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
                         <div class="text-center text-gray-500 dark:text-gray-400">
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar" />
+                        {/* <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar" /> */}
+                        <Lottie animationData={avatar}/>
                             <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 <a href="#">Nikhil Aggarwal</a>
                             </h3>
@@ -41,7 +46,8 @@ function Team() {
                             </ul>
                         </div>
                         <div class="text-center text-gray-500 dark:text-gray-400">
-                            <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Avatar" />
+                            {/* <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Avatar" /> */}
+                            <Lottie animationData={avatar3}/>
                             <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 <a href="#">Atul Yadav</a>
                             </h3>
@@ -70,7 +76,8 @@ function Team() {
                             </ul>
                         </div>
                         <div class="text-center text-gray-500 dark:text-gray-400">
-                            <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar" />
+                            {/* <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar" /> */}
+                            <Lottie animationData={avatar2}/>
                             <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 <a href="#">Mandeep Patwa</a>
                             </h3>

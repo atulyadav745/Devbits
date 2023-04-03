@@ -7,6 +7,8 @@ import Footer from "../../components/Home/Footer/Footer";
 import Team from "../Team/Team.js";
 import About from "../About/About";
 import Accordion from "../Accordion/Accordion";
+import animation from "../../assets/stock .json"
+import Lottie from "lottie-react";
 
 function Home() {
   return (
@@ -14,9 +16,10 @@ function Home() {
       <Navbar />
       <div className="h-screen">
         <section className="">
-          <div className="h-screen md:flex md:justify-center md:items-center">
+          <div className="h-screen md:flex md:justify-center md:items-center ">
+            
             <div className="">
-              <h1 className="lg:text-7xl text-4xl font-bold text-white m-5">
+              <h1 className="lg:text-7xl text-4xl font-bold text-blue-300 m-5 animate-puls  text-justify">
                 Buy & Sell Digital
                 <br />
                 Assets In The
@@ -24,7 +27,7 @@ function Home() {
                 Cryptex
               </h1>
 
-              <p className="text-white text-lg m-5">
+              <p className="text-white text-lg m-5 ">
                 Coin Cryptex is the easiest, safest, and fastest way to buy & sell
                 crypto asset exchange.
               </p>
@@ -37,7 +40,7 @@ function Home() {
               </Link>
             </div>
 
-            <figure className="m-5">
+            {/* <figure className="m-5">
               <img
                 src="/assets/hero-banner.png"
                 width="570"
@@ -45,10 +48,13 @@ function Home() {
                 alt="hero banner"
                 className="w-100"
               />
-            </figure>
+            </figure> */}
             {/* <div className="h-[100%] w-[600px]">
               <Lottie animationData={animation}/>
             </div> */}
+             <div className=" lg:mt-0 lg:col-span-5 flex md:h-[65%] h-[58%] justify-center" >
+          <Lottie animationData={animation}/>   
+          </div>
           </div>
         </section>
       </div>

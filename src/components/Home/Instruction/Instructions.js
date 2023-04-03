@@ -3,6 +3,11 @@ import im1 from "../../../assets/instruction-1.png";
 import im2 from "../../../assets/instruction-2.png";
 import im3 from "../../../assets/instruction-3.png";
 import im4 from "../../../assets/instruction-4.png";
+import Lottie from "lottie-react";
+import bit1 from "../../../assets/bit2.json"
+import bit2 from "../../../assets/bit1.json"
+import bit3 from "../../../assets/bit3.json"
+import bit4 from "../../../assets/bit2.json"
 
 function Instructions() {
   let data = [
@@ -10,25 +15,25 @@ function Instructions() {
       step: "Step1",
       name: "Download",
       text: "Stacks Is A Production-Ready Library Of Stackable Content Blocks Built In React Native.",
-      image: im1,
+      image: bit1,
     },
     {
       step: "Step2",
       name: "Connect Wallet",
       text: "Stacks Is A Production-Ready Library Of Stackable Content Blocks Built In React Native.",
-      image: im2,
+      image: bit2,
     },
     {
       step: "Step3",
       name: "Download",
       text: "Stacks Is A Production-Ready Library Of Stackable Content Blocks Built In React Native.",
-      image: im3,
+      image: bit3,
     },
     {
       step: "step4",
       name: "Download",
       text: "Stacks Is A Production-Ready Library Of Stackable Content Blocks Built In React Native.",
-      image: im4,
+      image: bit4,
     },
   ];
   return (
@@ -49,7 +54,7 @@ function Instructions() {
           {data.map((data, key) => (
             <li key={key}>
               <div className="text-center flex flex-col justify-center items-center py-5 px-5">
-                <figure className="transition  ">
+                {/* <figure className="transition  ">
                   <img
                     src={data.image}
                     width="96"
@@ -58,7 +63,11 @@ function Instructions() {
                     alt={data.step}
                     className="hover:rotate-180 py-3"
                   />
-                </figure>
+                </figure> */}
+                <div className="w-[50%]">
+                <Lottie animationData={data.image}/>
+                </div>
+                
 
                 <p className="card-subtitle text-xl font-bold  text-slate-400">
                   {data.step}
