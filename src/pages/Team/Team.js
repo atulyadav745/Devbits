@@ -12,9 +12,9 @@ function Team() {
                     <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
                         <div class="text-center text-gray-500 dark:text-gray-400">
-                            <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png" alt="Helene Avatar" />
+                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar" />
                             <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                <a href="#">Helene Engels</a>
+                                <a href="#">Nikhil Aggarwal</a>
                             </h3>
                             <p>CTO/Co-founder</p>
                             <ul class="flex justify-center mt-4 space-x-4">
@@ -43,7 +43,7 @@ function Team() {
                         <div class="text-center text-gray-500 dark:text-gray-400">
                             <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Avatar" />
                             <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                <a href="#">Jese Leos</a>
+                                <a href="#">Atul Yadav</a>
                             </h3>
                             <p>SEO & Marketing</p>
                             <ul class="flex justify-center mt-4 space-x-4">
@@ -72,7 +72,7 @@ function Team() {
                         <div class="text-center text-gray-500 dark:text-gray-400">
                             <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="Joseph Avatar" />
                             <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                <a href="#">Joseph Mcfall</a>
+                                <a href="#">Mandeep Patwa</a>
                             </h3>
                             <p>Sales</p>
                             <ul class="flex justify-center mt-4 space-x-4">
