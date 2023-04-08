@@ -8,9 +8,7 @@ import { GridLoader } from "react-spinners";
 
 function Table() {
 
-  const [stocksData, setStocksData] = useState({});
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const initialState = {
@@ -18,28 +16,14 @@ function Table() {
     price: 0,
   }
   const [buyData, setBuyData] = useState(initialState)
-
+  const data = useSelector(state => state.stockReduer)
 
   useEffect(() => {
     if (!auth.token) {
       navigate('/');
     }
-
-    setLoading(true)
     dispatch(stockDetails(auth.token))
-  }, [])
-
-  const data = useSelector(state => state.stockReduer)
-
-  useEffect(() => {
-    if (data.data) {
-      setStocksData(data.data);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000) ;
-    }
-  }, [])
-
+  }, [dispatch])
 
 
   const handleBuy = async (data) => {
@@ -75,7 +59,7 @@ function Table() {
         {/* Table */}
         <div className="overflow-x-auto max-h-[80vh]">
 
-          {loading ?
+          {!data?.data?.length ?
             (
               <div className='w-full mx-auto p-8' >
                 <div className=' p-8 flex justify-center'>
@@ -107,17 +91,17 @@ function Table() {
                 {/* Table body */}
                 <tbody className="text-base font-medium divide-y divide-slate-400 bg-slate-300">
                   {
-                    Array.from(stocksData).map((data) => {
+                    Array.from(data?.data).map((data) => {
                       return (
                         <tr key={data.ticker}>
                           <td className="px-2 text-xl font-bold flex justify-center items-center">
                             <div className="text-slate-800">{data.symbol}</div>
                           </td>
                           <td className="px-2 text-xl font-bold ">
-                            <div className="text-center text-gray-800">{data.open}</div>
+                            <div className="text-center text-gray-800">{Math.floor(data.open)}</div>
                           </td>
                           <td className="p-2 text-xl font-bold">
-                            <div className="text-center text-gray-800">{data.previousClose}</div>
+                            <div className="text-center text-gray-800">{Math.floor(data.previousClose)}</div>
                           </td>
                           <td className="p-2 text-xl font-extrabold">
                             <div className={data.pChange >= 0 ? "text-center text-green-500" : "text-center text-red-500"} > {data.pChange} </div>

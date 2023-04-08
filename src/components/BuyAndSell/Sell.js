@@ -41,7 +41,6 @@ const Sell = ({ stockName, stockPrice }) => {
       }
     })
     dispatch(sellStock(state.auth.token, data));
-    navigate("/");
   }
 
   return (

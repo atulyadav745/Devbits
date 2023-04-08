@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./css/style.css";
 
-import "./charts/ChartjsConfig";
 
 // Import pages
 import Dashboard from "./pages/Dashborad/Dashboard";

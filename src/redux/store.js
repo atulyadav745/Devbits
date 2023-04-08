@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from "redux-persist"
-import storage from "redux-persist/lib/storage"
+import storage from "redux-persist/lib/storage/session"
 import { PersistGate } from "redux-persist/integration/react"
 import {rootReducer} from "./reducers/index"
 

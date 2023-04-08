@@ -13,6 +13,7 @@ function Portfolio() {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
+    const data = useSelector(state => state.portfolio)
 
     const [sellData, setSellData] = useState({
         ticker: "IMB",
@@ -23,27 +24,23 @@ function Portfolio() {
         if (!auth.token) {
             navigate('/');
         }
-        setLoading(true);
         dispatch(portfolioDetails(auth.token))
-    }, [])
+    }, [dispatch])
 
-    const data = useSelector(state => state.portfolio)
 
-    useEffect(() => {
-        if (data.data) {
-            setPortfolio(data.data);
-            setTimeout(() => {
-                setLoading(false);
-            }, 2000);
 
-            console.log(data) ;
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (data.data) {
+    //         setPortfolio(data.data);
+            
+    //         console.log(data);
+    //     }
+    // }, [])
 
     const handleSell = async (data) => {
         setSellData({
             ticker: data.ticker,
-            price: data.price/data.quantity,
+            price: data.price / data.quantity,
         })
         dispatch({
             type: GLOBAL_TYPES.TOGGLE,
@@ -70,7 +67,7 @@ function Portfolio() {
 
                 {/* Table */}
                 <div className="overflow-auto max-h-[60vh]">
-                    {loading ?
+                    {!data?.data?.length ?
                         (
                             <div className='w-full mx-auto p-8' >
                                 <div className=' p-8 flex justify-center'>
@@ -102,7 +99,7 @@ function Portfolio() {
                                     </thead>
                                     <tbody className="text-base font-medium divide-y divide-slate-400 bg-slate-300">
                                         {
-                                            Array.from(portfolio).map((data) => {
+                                            Array.from(data?.data).map((data) => {
                                                 return (
                                                     <tr key={data.ticker}>
                                                         <td className="px-2 text-xl font-bold flex justify-center items-center">
@@ -112,10 +109,10 @@ function Portfolio() {
                                                             <div className="text-center">{data.quantity}</div>
                                                         </td>
                                                         <td className="p-2">
-                                                            <div className="px-2 text-xl font-bold text-center ">{data.price/data.quantity}</div>
+                                                            <div className="px-2 text-xl font-bold text-center ">{Math.floor(data.price / data.quantity)}</div>
                                                         </td>
                                                         <td className="p-2">
-                                                            <div className="px-2 text-xl font-bold text-center">{data.price/data.quantity}</div>
+                                                            <div className="px-2 text-xl font-bold text-center">{Math.floor(data.price / data.quantity)}</div>
                                                         </td>
                                                         <td className="p-2 flex justify-center items-center">
                                                             <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data)}>Sell</button>

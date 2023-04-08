@@ -2,26 +2,37 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "../../redux/actions/authActions";
+import { login, googleLogin } from "../../redux/actions/authActions";
+import { GoogleLogin } from "@react-oauth/google"
 
 const Login = () => {
   const initialState = { email: "", password: "" };
   const [userData, setUserData] = useState(initialState);
   const { email, password } = userData;
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.default) ;
+  const auth = useSelector(state => state.default);
   const navigate = useNavigate();
 
   let token = ""
-  if(auth && auth.token) token = auth.token
-  
+  if (auth && auth.token) token = auth.token
 
-  useEffect(()=>{
-    if(token)
-    {
+  const handleLogin = async (googleData) => {
+    let data = {
+      token : googleData.credential
+    };
+    dispatch(googleLogin(data)) ;
+    navigate("/dashboard")
+  }
+  const handleError = async (error) => {
+    console.log(error);
+  }
+
+
+  useEffect(() => {
+    if (token) {
       navigate("/dashboard")
     }
-  },[])
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -97,17 +108,19 @@ const Login = () => {
                     onChange={(e) => handleChangeInput(e)}
                   />
                 </div>
-                {/* <div className="ml-3 text-sm">
-                  <label htmlFor="terms" className="font-light text-gray-300">
-                    <a href="forgotpassword">Forgot Password ?</a>
-                  </label>
-                </div> */}
                 <button
                   type="submit"
                   className="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
                 >
                   Login
                 </button>
+                <GoogleLogin
+                  className="mx-auto w-full"
+                  onSuccess={handleLogin}
+                  onError={handleError}
+                />
+
+
                 <p className="text-sm font-light text-gray-400">
                   Doesn't have an account?{" "}
                   <a

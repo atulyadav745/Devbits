@@ -41,8 +41,7 @@ const Buy = ({ stockName, stockPrice }) => {
       price: stockPrice,
       quantity: stockQuantity
     }
-    dispatch(purchaseStock(state.auth.token, data));
-    navigate("/");
+    dispatch(purchaseStock(state.auth.token, data));    
   }
 
   return (

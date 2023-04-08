@@ -1,9 +1,8 @@
+import { CheckCircle } from '@mui/icons-material';
 import axios from 'axios'
 
 const BASE_URL = "https://stock-trading-platform.onrender.com" ;
-// let axiosConfig = {
-//     withCredentials: true,
-// }
+// https://stock-trading-platform.onrender.com/stock/leader-board
 
 export const getDataAPI = async (url, token) => {
     const res = await axios.get(`${BASE_URL}/${url}`, {

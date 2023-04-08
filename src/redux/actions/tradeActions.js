@@ -1,19 +1,25 @@
 import { GLOBAL_TYPES } from "./GLOBAL_TYPES";
 import { postDataAPI } from "../../utils/fetchData"
-import { useNavigate } from "react-router-dom";
 
 export const purchaseStock = (token, data) => async (dispatch) => {
     try {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
         const res = await postDataAPI("trade/purchase-stock", data, token);
-        const output_data = res.data ;
-        console.log(output_data) ;
-        dispatch({
-            type: GLOBAL_TYPES.TRADE,
-            payload: {
-                data: output_data
-            }
-        })
+        const output_data = res.data;
+        console.log(output_data);
+        if (res.data.status === 200) {
+            dispatch({
+                type: GLOBAL_TYPES.TRADE,
+                payload: {
+                    data: output_data
+                }
+            })
+            dispatch({ type: GLOBAL_TYPES.ALERT, payload: { type: "success", message: res.data.message } })
+        }
+        else {
+            dispatch({ type: GLOBAL_TYPES.ALERT, payload: { type: "failure", message: res.data.message } })
+        }
+
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
     } catch (error) {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
@@ -24,14 +30,21 @@ export const purchaseStock = (token, data) => async (dispatch) => {
 export const sellStock = (token, data) => async (dispatch) => {
     try {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: true } })
-        const res = await postDataAPI("trade/sell-stock", token, data);
-        console.log(res) ;
-        dispatch({
-            type: GLOBAL_TYPES.STOCK,
-            payload: {
-                data: res.data
-            }
-        })
+        const res = await postDataAPI("trade/sell-stock", data, token);
+        const output_data = res.data;
+        console.log(output_data);
+        if (res.data.status === 200) {
+            dispatch({
+                type: GLOBAL_TYPES.TRADE,
+                payload: {
+                    data: output_data
+                }
+            })
+            dispatch({ type: GLOBAL_TYPES.ALERT, payload: { type: "success", message: res.data.message } })
+        }
+        else {
+            dispatch({ type: GLOBAL_TYPES.ALERT, payload: { type: "failure", message: res.data.message } })
+        }
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
     } catch (error) {
         dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
