@@ -4,10 +4,10 @@ import im2 from "../../../assets/instruction-2.png";
 import im3 from "../../../assets/instruction-3.png";
 import im4 from "../../../assets/instruction-4.png";
 import Lottie from "lottie-react";
-import bit1 from "../../../assets/bit2.json"
-import bit2 from "../../../assets/bit1.json"
-import bit3 from "../../../assets/bit3.json"
-import bit4 from "../../../assets/bit2.json"
+import bit1 from "../../../assets/bit2.json";
+import bit2 from "../../../assets/bit1.json";
+import bit3 from "../../../assets/bit3.json";
+import bit4 from "../../../assets/bit2.json";
 
 function Instructions() {
   let data = [
@@ -38,6 +38,7 @@ function Instructions() {
   ];
   return (
     <section
+      id="about"
       className="flex min-h-screen items-center"
       aria-label="instruction"
       data-section
@@ -65,9 +66,8 @@ function Instructions() {
                   />
                 </figure> */}
                 <div className="w-[50%]">
-                <Lottie animationData={data.image}/>
+                  <Lottie animationData={data.image} />
                 </div>
-                
 
                 <p className="card-subtitle text-xl font-bold  text-slate-400">
                   {data.step}

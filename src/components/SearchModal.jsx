@@ -113,11 +113,11 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen, data }) {
                 onChange={handleFilter}
               />
               <button
-                className="absolute inset-0 right-auto group"
+                className="absolute inset-0 right-auto p-4 group"
                 type="submit"
                 aria-label="Search"
               >
-                <BiSearch/>
+                <BiSearch className="mx-auto"/>
               </button>
             </div>
           </form>

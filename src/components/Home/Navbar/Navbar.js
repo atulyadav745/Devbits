@@ -5,9 +5,9 @@ import "./Navbar.css";
 
 function Navbar() {
   let Links = [
-    { name: "HOME", link: "/" },
-    { name: "ABOUT", link: "/" },
+    { name: "GUIDE", link: "/guide" },
     { name: "NEWS", link: "/news" },
+    { name: "ABOUT", link: "#about" },
     { name: "LOGIN / SIGNUP", link: "/login" },
   ];
 
