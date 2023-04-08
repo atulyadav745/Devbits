@@ -1,6 +1,6 @@
 import { GLOBAL_TYPES } from "./GLOBAL_TYPES";
 import axios from "axios";
-import { postDataAPI } from "../../utils/fetchData"
+import { getDataAPI, postDataAPI } from "../../utils/fetchData"
 
 
 export const register = (data) => async (dispatch) => {
@@ -76,3 +76,4 @@ export const googleLogin = (data) => async (dispatch) => {
     }
 
 }
+

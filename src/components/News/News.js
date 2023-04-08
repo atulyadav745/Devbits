@@ -12,7 +12,6 @@ const News = () => {
       await fetch(url)
         .then((response) => {
           if (response.ok) {
-            console.log("OK");
             return response.json();
           } else {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -20,15 +19,12 @@ const News = () => {
         })
         .then((res) => {
           setNewsData(res);
-          console.log(newsData);
         })
         .catch((error) => {
-          console.error("Error:", error);
         });
     getNewsData();
   }, []);
 
-  // getNewsData();
 
   const handleDate = (e) => {
     const unixTimestamp = e;

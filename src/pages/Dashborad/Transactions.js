@@ -27,7 +27,6 @@ const Transactions = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setTransactions(data);
       })
       .catch((error) => {

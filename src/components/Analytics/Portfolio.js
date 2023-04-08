@@ -32,7 +32,7 @@ function Portfolio() {
     // useEffect(() => {
     //     if (data.data) {
     //         setPortfolio(data.data);
-            
+
     //         console.log(data);
     //     }
     // }, [])
@@ -100,25 +100,29 @@ function Portfolio() {
                                     <tbody className="text-base text-white font-medium divide-y divide-slate-400 bg-gray-900">
                                         {
                                             Array.from(data?.data).map((data) => {
-                                                return (
-                                                    <tr key={data.ticker} className='bg-gray-700 hover:bg-gray-600'>
-                                                        <td className="px-2 text-xl flex justify-center items-center">
-                                                            <div>{data.ticker}</div>
-                                                        </td>
-                                                        <td className="px-2 text-xl  ">
-                                                            <div className="text-center">{data.quantity}</div>
-                                                        </td>
-                                                        <td className="p-2">
-                                                            <div className="px-2 text-xl text-center ">{Math.floor(data.price / data.quantity)}</div>
-                                                        </td>
-                                                        <td className="p-2">
-                                                            <div className="px-2 text-xl  text-center">{Math.floor(data.price / data.quantity)}</div>
-                                                        </td>
-                                                        <td className="p-2 flex justify-center items-center">
-                                                            <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data)}>Sell</button>
-                                                        </td>
-                                                    </tr>
-                                                )
+                                                if (data.quantity != 0) {
+                                                    return (
+
+                                                        <tr key={data.ticker} className='bg-gray-700 hover:bg-gray-600'>
+                                                            <td className="px-2 text-xl flex justify-center items-center">
+                                                                <div>{data.ticker}</div>
+                                                            </td>
+                                                            <td className="px-2 text-xl  ">
+                                                                <div className="text-center">{data.quantity}</div>
+                                                            </td>
+                                                            <td className="p-2">
+                                                                <div className="px-2 text-xl text-center ">{Math.floor(data.price / data.quantity)}</div>
+                                                            </td>
+                                                            <td className="p-2">
+                                                                <div className="px-2 text-xl  text-center">{Math.floor(data.price / data.quantity)}</div>
+                                                            </td>
+                                                            <td className="p-2 flex justify-center items-center">
+                                                                <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data)}>Sell</button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                }
+
                                             })
                                         }
                                     </tbody>
