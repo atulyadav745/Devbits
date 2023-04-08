@@ -4,14 +4,13 @@ import React, { useEffect, useState } from "react";
 // import TransactionsSkeleton from "./TransactionsSkeleton";
 
 const Transactions = () => {
-  // const dispatch = useDispatch();
-  // const transactions = useSelector((state) => state.transactionsReducer);
-
-  // useEffect(() => {
-  //   dispatch(getTransactions());
-  // }, [dispatch]);
-
-  const [transactions, setTransactions] = useState([]);
+  
+  const [transactions, setTransactions] = useState([{
+    transactionType: "BUY",
+    shares: 11,
+    tickerBought: "BAJFINANCE",
+    transactedAt: "2023-04-08T18:39:02.307Z",
+  }]);
   const url =
     "https://stock-trading-platform.onrender.com/stock/allTransaction";
   const getTransactionsData = () => {
@@ -40,15 +39,8 @@ const Transactions = () => {
   getTransactionsData();
 
   return (
-    <div className="bg-gray-900 max-h-72 overflow-y-auto">
-      <div className="container px-4 py-4 mx-auto">
-        {/* <h2 className="text-left text-lg font-semibold text-gray-700 capitalize text-gray-200 mb-2"> */}
-        {/* Transactions ({!transactions?.length ? 0 : transactions.length} latest */}
-        {/* records) */}
-        {/* </h2> */}
-        {/* {!transactions?.length ? ( */}
-        {/* <TransactionsSkeleton /> */}
-        {/* ) : ( */}
+    <div className="bg-gray-900 max-h-47 overflow-y-auto w-full">
+      <div className="container px-4  w-full py-4 mx-auto">
         <div className="text-xs overflow-auto shadow">
           <div className="shadow rounded-lg">
             <table className="table-auto leading-normal">
@@ -56,25 +48,25 @@ const Transactions = () => {
                 <tr>
                   <th
                     scope="col"
-                    className="w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-white text-left text-xs uppercase font-normal"
+                    className="w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-white text-left text-lg uppercase font-normal"
                   >
                     Type
                   </th>
                   <th
                     scope="col"
-                    className="md:table-cell w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-white text-left text-xs uppercase font-normal"
+                    className="md:table-cell w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-white text-left text-lg uppercase font-normal"
                   >
                     Shares
                   </th>
                   <th
                     scope="col"
-                    className="w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-left text-white text-xs uppercase font-normal"
+                    className="w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-left text-white text-lg uppercase font-normal"
                   >
                     Ticker
                   </th>
                   <th
                     scope="col"
-                    className="w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-left text-white text-xs uppercase font-normal"
+                    className="w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-left text-white text-lg uppercase font-normal"
                   >
                     Date
                   </th>
@@ -86,22 +78,22 @@ const Transactions = () => {
                     key={transaction._id}
                     className="bg-gray-700 hover:bg-gray-600"
                   >
-                    <td className="px-5 py-5 border-b border-gray-800 text-xs ">
+                    <td className="px-5 py-5 border-b border-gray-800 text-base ">
                       <p className=" text-white whitespace-no-wrap">
                         {transaction.transactionType}
                       </p>
                     </td>
-                    <td className="px-5 py-5 border-b border-gray-800 text-xs ">
+                    <td className="px-5 py-5 border-b border-gray-800 text-base ">
                       <p className=" text-white whitespace-no-wrap">
                         {transaction.shares}
                       </p>
                     </td>
-                    <td className="px-5 py-5 border-b border-gray-800 text-xs ">
+                    <td className="px-5 py-5 border-b border-gray-800 text-base ">
                       <p className=" text-white whitespace-no-wrap">
                         {transaction.tickerBought}
                       </p>
                     </td>
-                    <td className="px-5 py-5 border-b border-gray-800 text-xs ">
+                    <td className="px-5 py-5 border-b border-gray-800 text-base ">
                       <p className=" text-white whitespace-no-wrap">
                         {new Date(transaction.transactedAt).toDateString()}{" "}
                         {new Date(

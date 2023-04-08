@@ -58,7 +58,7 @@ function Portfolio() {
     return (
 
 
-        <div className="col-span-full xl:col-span-12 bg-slate-100 shadow-lg rounded-sm border border-slate-800">
+        <div className="col-span-full xl:col-span-12 bg-gray-900 shadow-lg rounded-sm border border-slate-800">
             <header className="px-5 py-4 border-b border-slate-100 bg-slate-800 text-white">
                 <h2 className="font-bold text-center text-2xl ">Your Portfolio</h2>
             </header>
@@ -86,33 +86,33 @@ function Portfolio() {
                         :
                         (
                             <>
-                                <table className="table-auto w-full ">
+                                <table className="table-auto w-full bg-gray-900 ">
                                     {/* Table header */}
                                     <thead className="text-xs uppercase text-white  bg-slate-600 rounded-md">
                                         <tr>
                                             {LabelNames.map((index) => (
-                                                <th className="p-3" key={index}>
+                                                <th className="w-1/6 px-5 py-3 bg-gray-800  border-b border-gray-800 text-white text-left text-lg uppercase font-normal" key={index}>
                                                     <div className="font-semibold text-center">{index}</div>
                                                 </th>
                                             ))}
                                         </tr>
                                     </thead>
-                                    <tbody className="text-base font-medium divide-y divide-slate-400 bg-slate-300">
+                                    <tbody className="text-base text-white font-medium divide-y divide-slate-400 bg-gray-900">
                                         {
                                             Array.from(data?.data).map((data) => {
                                                 return (
-                                                    <tr key={data.ticker}>
-                                                        <td className="px-2 text-xl font-bold flex justify-center items-center">
-                                                            <div className="text-slate-800">{data.ticker}</div>
+                                                    <tr key={data.ticker} className='bg-gray-700 hover:bg-gray-600'>
+                                                        <td className="px-2 text-xl flex justify-center items-center">
+                                                            <div>{data.ticker}</div>
                                                         </td>
-                                                        <td className="px-2 text-xl font-bold ">
+                                                        <td className="px-2 text-xl  ">
                                                             <div className="text-center">{data.quantity}</div>
                                                         </td>
                                                         <td className="p-2">
-                                                            <div className="px-2 text-xl font-bold text-center ">{Math.floor(data.price / data.quantity)}</div>
+                                                            <div className="px-2 text-xl text-center ">{Math.floor(data.price / data.quantity)}</div>
                                                         </td>
                                                         <td className="p-2">
-                                                            <div className="px-2 text-xl font-bold text-center">{Math.floor(data.price / data.quantity)}</div>
+                                                            <div className="px-2 text-xl  text-center">{Math.floor(data.price / data.quantity)}</div>
                                                         </td>
                                                         <td className="p-2 flex justify-center items-center">
                                                             <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data)}>Sell</button>

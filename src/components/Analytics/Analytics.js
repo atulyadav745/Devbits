@@ -8,9 +8,8 @@ function Analytics() {
     return (
         <>
             <div className="">
-                {/* <DashboardCard04 /> */}
                 <Cards/>
-                <DashboardCard06 />
+                <DashboardCard06/>
                 <Portfolio/>
             </div>
         </>
