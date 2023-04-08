@@ -17,12 +17,15 @@ import News from "./pages/Dashborad/NewsPage";
 import Notify from "./components/Alert/Notify";
 import Guide from "./pages/Guide/Guide";
 import { GLOBAL_TYPES } from "./redux/actions/GLOBAL_TYPES";
+import { ToastContainer } from "react-toast";
+import { Toaster } from "react-hot-toast";
+import Leaderboard from "./components/Leaderboard/Leaderboard";
 
 function App() {
   const location = useLocation();
   const auth = useSelector((state) => state.auth);
   const notify = useSelector((state) => state.notifyReducer);
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
   let token = "";
   if (auth && auth.token) token = auth.token;
   // dispatch({ type: GLOBAL_TYPES.NOTIFY, payload: { loading: false } })
@@ -36,9 +39,14 @@ function App() {
   return (
     <>
       <Notify />
+      <div style={{ "z-index": "9999" }}>
+        <Toaster style={{ "z-index": "9999" }} />
+        <ToastContainer position="top-right" style={{ "z-index": "9999" }} />
+      </div>
       <Routes>
         <Route index element={token ? <Dashboard /> : <Home />} />
         <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/leaderboard" element={<Leaderboard />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/market" element={token ? <Stocks /> : <Login />} />
         <Route

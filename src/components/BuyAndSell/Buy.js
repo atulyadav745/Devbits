@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { GLOBAL_TYPES } from "../../redux/actions/GLOBAL_TYPES";
 import { purchaseStock } from "../../redux/actions/tradeActions"
+import { toast } from 'react-toast'
 
 const Buy = ({ stockName, stockPrice }) => {
 
@@ -27,7 +28,7 @@ const Buy = ({ stockName, stockPrice }) => {
   const handleInput = (e) => {
     setStockQuantity(e.target.value);
   };
-
+  const notify = () => toast('Here is your toast.');
   const handleBuy = () => {
 
     dispatch({
@@ -42,6 +43,7 @@ const Buy = ({ stockName, stockPrice }) => {
       quantity: stockQuantity
     }
     dispatch(purchaseStock(state.auth.token, data));
+    notify();
     navigate("/");
   }
 
