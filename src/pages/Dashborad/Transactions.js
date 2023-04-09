@@ -1,39 +1,50 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux"
 
 
 const Transactions = () => {
-  
+
+  const auth = useSelector(state => state.auth);
+
   const [transactions, setTransactions] = useState([{
     transactionType: "BUY",
     shares: 11,
     tickerBought: "BAJFINANCE",
     transactedAt: "2023-04-08T18:39:02.307Z",
   }]);
-  const url =
-    "https://stock-trading-platform.onrender.com/stock/allTransaction";
-  const getTransactionsData = () => {
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDI2MGVkYjkzZjg1YWE4MzNiNTE5MDYiLCJpYXQiOjE2ODAyMTU3NzJ9.tZaVZeD8WvUHARlfGNUKwglslT8t2TQfqLTpE5mIfNI",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setTransactions(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
-  getTransactionsData();
+
+  useEffect(() => {
+
+    if (auth?.token) {
+      const url =
+        "https://stock-trading-platform.onrender.com/stock/allTransaction";
+      const getTransactionsData = () => {
+        fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization:
+              `Bearer ${auth.token}`,
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            setTransactions(data);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      };
+      getTransactionsData();
+    }
+
+  }, [auth])
+
 
   return (
     <div className="bg-gray-900 max-h-47 overflow-y-auto w-full">
