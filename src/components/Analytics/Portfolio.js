@@ -114,7 +114,7 @@ function Portfolio() {
                                                                 <div className="px-2 text-xl text-center ">{Math.floor(data.price / data.quantity)}</div>
                                                             </td>
                                                             <td className="p-2">
-                                                                <div className="px-2 text-xl  text-center">{Math.floor(data.price / data.quantity)}</div>
+                                                                <div className="px-2 text-xl  text-center">{Math.floor(data.price / data.quantity) + 10}</div>
                                                             </td>
                                                             <td className="p-2 flex justify-center items-center">
                                                                 <button className='text-center w-1/2 bg-green-600 px-5 py-2 rounded-lg text-white text-base' onClick={() => handleSell(data)}>Sell</button>
