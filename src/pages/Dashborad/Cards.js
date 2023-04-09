@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { infoUser } from "../../redux/actions/stockActions"
 
 const Cards = () => {
   const [userAccountData, setUserAccountData] = useState({
     balance: 5378,
     investedValue: 45,
   });
-
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (auth?.token) {
+      dispatch(infoUser(auth.token))
+    }
+
+  }, [dispatch])
+
 
   return (
     <div className="px-6 p-6 w-full mb-20">
@@ -54,6 +62,7 @@ const Cards = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

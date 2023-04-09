@@ -19,6 +19,20 @@ export const stockDetails = (token) => async (dispatch) => {
     }
 }
 
+export const infoUser = (token) => async (dispatch) => {
+    try {
+        if (token) {
+            const res = await getDataAPI("auth/info", token);
+            dispatch({
+                type: GLOBAL_TYPES.AUTH, payload: {
+                    token: token,
+                    user: res.data.user
+                }
+            })
+        }
+    } catch (error) {
+    }
+}
 
 export const customStockDetails = (token, data) => async (dispatch) => {
     try {

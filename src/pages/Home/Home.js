@@ -24,7 +24,7 @@ function Home() {
                 <br />
                 Assets In The
                 <br />
-                Cryptex
+                Bull Traders
               </h1>
 
               <p className="text-white text-lg m-5 ">
