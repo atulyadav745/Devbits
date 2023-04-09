@@ -46,7 +46,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     { name: "News", index: "/news" },
     { name: "Market", index: "/market" },
     { name: "Search", index: "/" },
-    { name: "Leaderboard", index: "/leaderboard" },
+    // { name: "Leaderboard", index: "/leaderboard" },
     { name: "Profile", index: "/" },
   ];
 

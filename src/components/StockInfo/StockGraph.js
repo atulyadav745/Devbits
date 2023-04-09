@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { tailwindConfig } from '../../utils/Utils';
+import { tailwindConfig } from "../../utils/Utils";
 import { randomData } from "../../utils/randomData";
-
 
 import {
   Chart as ChartJS,
@@ -107,13 +106,13 @@ const DashboardCard04 = () => {
   }, []);
 
   return (
-        <div className="flex flex-col col-span-full md:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
-          <header className="px-5 py-4 border-b border-slate-100">
-            <h2 className="font-semibold text-slate-800">Direct VS Indirect</h2>
-          </header>
-          <Line data={data}  width={595} height={248}/>
-        </div>
-      );
+    <div className="flex flex-col col-span-full md:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
+      <header className="px-5 py-4 border-b border-slate-100">
+        <h2 className="font-semibold text-slate-800">Direct VS Indirect</h2>
+      </header>
+      <Line data={data} width={595} height={248} />
+    </div>
+  );
 };
 
 export default DashboardCard04;

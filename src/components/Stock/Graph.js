@@ -1,5 +1,3 @@
-// TradingViewWidget.jsx
-
 import React, { useEffect, useRef } from "react";
 
 let tvScriptLoadingPromise;
@@ -34,7 +32,9 @@ export default function TradingViewWidget() {
         "TradingView" in window
       ) {
         new window.TradingView.widget({
-          autosize: true,
+          // autosize: true,
+          width:true,
+          height:"400px",
           symbol: "NASDAQ:AAPL",
           interval: "D",
           timezone: "Asia/Kolkata",
