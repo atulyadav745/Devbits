@@ -55,8 +55,6 @@ The following contributors have helped make Bull Traders better:
 
 - [Nikhil](https://github.com/DevilzzNikhil)
 - [Atul Yadav](https://github.com/atulyadav745)
-
-We appreciate their efforts and contributions to this project!
 ## Contributing
 
 We welcome contributions to Bull Traders! If you have any ideas, improvements, or bug fixes, please submit a pull request. Be sure to adhere to the existing coding style and conventions.
