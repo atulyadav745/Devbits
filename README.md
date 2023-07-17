@@ -53,11 +53,11 @@ Once you have Bull Traders up and running, you can perform the following actions
 
 The following contributors have helped make Bull Traders better:
 
-- [John Doe](https://github.com/DevilzzNikhil)
-  ![John Doe](https://github.com/DevilzzNikhil.png?size=100)
+- [Nikhil](https://github.com/DevilzzNikhil)
+  ![Nikhil](https://github.com/DevilzzNikhil.png?size=100)
 
-- [Jane Smith](https://github.com/atulyadav745)
-  ![Jane Smith](https://github.com/atulyadav745.png?size=100)
+- [Atul Yadav](https://github.com/atulyadav745)
+  ![Atul Yadav](https://github.com/atulyadav745.png?size=100)
 
 We appreciate their efforts and contributions to this project!
 ## Contributing
