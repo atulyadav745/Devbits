@@ -41,11 +41,13 @@ Once you have Bull Traders up and running, you can perform the following actions
 ## Features
 
 - **User Authentication**: Securely register and log in to your account.
+- **Google Login**: Sign in to your account using your Google credentials for a seamless login experience.
 - **Stock Search**: Find stocks by symbol or name and view real-time prices.
 - **Buy and Sell Orders**: Execute buy and sell orders for stocks in your portfolio.
 - **Transaction History**: Keep track of your trading activity, including past buy and sell orders.
 - **Market News**: Stay updated with the latest financial news and market trends.
 - **Stock Visualization**: Visualize stock price trends, historical data, and compare performance.
+
 
 ## Contributing
 
