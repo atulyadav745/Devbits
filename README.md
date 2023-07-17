@@ -8,9 +8,10 @@ Welcome to **Bull Traders**, a powerful and user-friendly stock trading platform
 2. [Installation](#installation)
 3. [Usage](#usage)
 4. [Features](#features)
-5. [Contributing](#contributing)
-6. [Support](#support)
-7. [License](#license)
+5. [Contributors](#contributors)
+6. [Contributing](#contributing)
+7. [Support](#support)
+8. [License](#license)
 
 ## Introduction
 
@@ -48,7 +49,17 @@ Once you have Bull Traders up and running, you can perform the following actions
 - **Market News**: Stay updated with the latest financial news and market trends.
 - **Stock Visualization**: Visualize stock price trends, historical data, and compare performance.
 
+## Contributors
 
+The following contributors have helped make Bull Traders better:
+
+- [John Doe](https://github.com/DevilzzNikhil)
+  ![John Doe](https://github.com/DevilzzNikhil.png?size=100)
+
+- [Jane Smith](https://github.com/atulyadav745)
+  ![Jane Smith](https://github.com/atulyadav745.png?size=100)
+
+We appreciate their efforts and contributions to this project!
 ## Contributing
 
 We welcome contributions to Bull Traders! If you have any ideas, improvements, or bug fixes, please submit a pull request. Be sure to adhere to the existing coding style and conventions.
