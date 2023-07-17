@@ -20,12 +20,11 @@ Bull Traders is designed to provide you with an intuitive and efficient trading 
 
 To install Bull Traders, follow these steps:
 
-1. Clone the repository from GitHub: `git clone https://github.com/your-username/bull-traders.git`
-2. Navigate to the project directory: `cd bull-traders`
-3. Install the required dependencies: `npm install`
-4. Set up your environment variables (if any) in a `.env` file.
-5. Start the application: `npm start`
-6. Access Bull Traders in your web browser at `http://localhost:3000`.
+1. Clone the repository from GitHub: `git clone https://github.com/atulyadav745/Devbits.git`
+2. Navigate to the project directory: `cd Devbits`
+3. Install the required dependencies: `npm install
+4. Start the application: `npm start`
+5. Access Bull Traders in your web browser at `http://localhost:3000`.
 
 ## Usage
 
